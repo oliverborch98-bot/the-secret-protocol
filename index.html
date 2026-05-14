@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE SECRET — 28-Day Protocol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Manrope:wght@400;500;600;700&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!--
+  Leads samles automatisk i Netlify dashboard.
+  Ingen konto til forms nødvendig — virker bare.
+  -->
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-2: #141414;
+      --bg-3: #1c1c1c;
+      --line: #2a2a2a;
+      --line-2: #3a3a3a;
+      --ink: #f4efe6;
+      --ink-2: #b8b3aa;
+      --ink-3: #6e6a64;
+      --blood: #e63300;
+      --blood-2: #ff4d1a;
+      --gold: #c9a961;
+      --warn: #ffcc33;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 20% 0%, rgba(230,51,0,0.08), transparent 40%),
+        radial-gradient(circle at 80% 100%, rgba(201,169,97,0.05), transparent 40%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.05;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    ::selection { background: var(--blood); color: #fff; }
+
+    /* ========== TOP BAR ========== */
+    .topbar {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .topbar-inner {
+      max-width: 1400px; margin: 0 auto; padding: 14px 32px;
+      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    }
+    .topbar-left { display:flex; align-items:center; gap: 14px; color: var(--ink-2); }
+    .dot { width:8px; height:8px; border-radius:50%; background:var(--blood); box-shadow:0 0 10px var(--blood); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.4;} }
+    .topbar-right { color:var(--ink-3); display:flex; gap:20px; }
+    .topbar-right span:first-child { color:var(--gold); }
+
+    /* ========== LAYOUT ========== */
+    .wrap { max-width:1400px; margin:0 auto; padding:0 32px; }
+    .section { padding:100px 0 80px; border-bottom:1px solid var(--line); }
+    .section-head { display:flex; justify-content:space-between; align-items:flex-start; gap:40px; margin-bottom:56px; flex-wrap:wrap; }
+    .section-tag { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.25em; color:var(--blood); text-transform:uppercase; margin-bottom:12px; }
+    .section-title { font-family:'Anton',sans-serif; font-size:clamp(48px,8vw,100px); line-height:0.9; text-transform:uppercase; letter-spacing:-0.01em; }
+    .section-sub { max-width:400px; font-size:15px; color:var(--ink-2); line-height:1.7; padding-top:8px; }
+
+    /* ========== GATE PAGE ========== */
+    #gate {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .gate-hero {
+      padding: 80px 0 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .classified {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 0.4em; color: var(--blood);
+      margin-bottom: 24px;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .classified::before { content:''; width:40px; height:1px; background:var(--blood); }
+    .gate-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(80px, 16vw, 220px);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .gate-title .accent { color: var(--blood); font-style: italic; }
+    .gate-sub {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(40px, 8vw, 110px);
+      line-height: 0.9;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--ink-2);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+    .gate-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 24px;
+      margin-top: 32px; padding-top: 32px;
+      border-top: 1px solid var(--line);
+      max-width: 1100px;
+    }
+    .meta-item .label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; margin-bottom:6px; }
+    .meta-item .value { font-family:'Oswald',sans-serif; font-weight:600; font-size:22px; color:var(--ink); text-transform:uppercase; letter-spacing:0.02em; }
+    .meta-item .value.blood { color:var(--blood); }
+    .meta-item .value.gold { color:var(--gold); }
+
+    /* ========== GATE FORM SECTION ========== */
+    .gate-form-section {
+      padding: 80px 0 100px;
+    }
+    .gate-form-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .gate-form-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+    .gate-pitch-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 0.3em; color: var(--blood);
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .gate-pitch-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+    }
+    .gate-pitch-title .acc { color: var(--blood); font-style: italic; }
+    .gate-pitch-body {
+      font-size: 16px; color: var(--ink-2); line-height: 1.75;
+      border-left: 2px solid var(--blood);
+      padding-left: 20px;
+      margin-bottom: 36px;
+    }
+    .gate-pitch-body strong { color: var(--ink); }
+    .promises {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .promise-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 14px; color: var(--ink-2);
+    }
+    .promise-icon {
+      width: 24px; height: 24px; min-width: 24px;
+      border: 1px solid var(--blood);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; color: var(--blood);
+      margin-top: 1px;
+    }
+    .promise-item strong { color: var(--ink); }
+
+    /* ========== FORM CARD ========== */
+    .form-card {
+      background: var(--bg-2);
+      border: 1px solid var(--line-2);
+      padding: 48px 40px;
+      position: relative;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blood), var(--gold));
+    }
+    .form-header {
+      margin-bottom: 32px;
+    }
+    .form-header-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.3em; color: var(--blood);
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .form-header h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 26px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .form-header p {
+      margin-top: 8px; font-size: 13px; color: var(--ink-3);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.25em; color: var(--ink-3);
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg-3);
+      border: 1px solid var(--line-2);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      font-size: 15px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blood);
+    }
+    .form-group input::placeholder { color: var(--ink-3); }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236e6a64' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .form-group select option { background: #1c1c1c; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--blood);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 18px 32px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .submit-btn:hover { background: var(--blood-2); }
+    .submit-btn:active { transform: scale(0.99); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .submit-btn .arrow { font-size: 20px; }
+
+    .form-small {
+      margin-top: 16px;
+      font-size: 11px; color: var(--ink-3);
+      font-family: 'JetBrains Mono', monospace;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* Error / Success states */
+    .form-error {
+      color: var(--blood-2);
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 6px;
+      display: none;
+    }
+    .form-error.show { display: block; }
+
+    #submit-error {
+      background: rgba(230,51,0,0.1);
+      border: 1px solid var(--blood);
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--blood-2);
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 16px;
+      display: none;
+    }
+    #submit-error.show { display: block; }
+
+    /* ========== SUCCESS / UNLOCKED STATE ========== */
+    #programme { display: none; }
+    #programme.unlocked { display: block; }
+
+    #unlock-banner {
+      display: none;
+      background: var(--blood);
+      color: #fff;
+      text-align: center;
+      padding: 16px 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    #unlock-banner.show { display: block; }
+
+    /* ========== PROGRAMME STYLES (unchanged from original) ========== */
+    .hero {
+      min-height: 95vh; padding: 80px 0 60px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; border-bottom: 1px solid var(--line);
+    }
+    .hero-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(80px, 16vw, 240px);
+      line-height: 0.85; letter-spacing: -0.02em;
+      color: var(--ink); margin-bottom: 8px; text-transform: uppercase;
+    }
+    .hero-title .accent { color: var(--blood); font-style: italic; -webkit-text-stroke: 0; }
+    .hero-sub {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(40px, 8vw, 120px);
+      line-height: 0.9; color: transparent;
+      -webkit-text-stroke: 1.5px var(--ink-2);
+      letter-spacing: -0.01em; text-transform: uppercase; margin-bottom: 48px;
+    }
+    .hero-meta {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px; margin-top: 32px; padding-top: 32px;
+      border-top: 1px solid var(--line); max-width: 1100px;
+    }
+    .brief {
+      margin-top: 64px; max-width: 720px; font-size: 17px;
+      line-height: 1.7; color: var(--ink-2);
+      border-left: 2px solid var(--blood); padding-left: 24px;
+    }
+    .brief strong { color: var(--ink); font-weight: 600; }
+    .scroll-hint {
+      position: absolute; bottom: 24px; right: 32px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.3em; color: var(--ink-3); text-transform: uppercase;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .scroll-hint::after {
+      content: ''; width: 1px; height: 32px;
+      background: linear-gradient(to bottom, var(--ink-3), transparent);
+      animation: scrollDown 1.6s infinite ease-in-out;
+    }
+    @keyframes scrollDown { 0%,100%{transform:scaleY(1);opacity:1;} 50%{transform:scaleY(0.5);opacity:0.3;} }
+
+    /* Nutrition */
+    .nutrition-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .span-4 { grid-column: span 4; } .span-6 { grid-column: span 6; } .span-12 { grid-column: span 12; }
+    @media (max-width: 900px) { .nutrition-grid > * { grid-column: span 12 !important; } }
+    .rule-card { background: var(--bg-2); border: 1px solid var(--line); padding: 32px 28px; }
+    .rule-card .num { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:var(--blood); margin-bottom:10px; }
+    .rule-card h3 { font-family:'Oswald',sans-serif; font-weight:600; font-size:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px; }
+    .rule-card p { font-size:14px; color:var(--ink-2); line-height:1.7; margin-bottom:8px; }
+    .yes { color:#4ade80; font-weight:600; } .no { color:var(--blood); font-weight:600; }
+    .eat-list, .ban-list { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin-top:4px; list-style:none; }
+    .eat-list li, .ban-list li { font-size:13px; color:var(--ink-2); padding:8px 0 8px 16px; border-bottom:1px solid var(--line); position:relative; }
+    .eat-list li::before { content:'↗'; position:absolute; left:0; color:#4ade80; font-size:11px; }
+    .ban-list li::before { content:'✕'; position:absolute; left:0; color:var(--blood); font-size:11px; }
+    @media (max-width:900px) { .eat-list,.ban-list { grid-template-columns:1fr; } }
+
+    .timeline { background:var(--bg-2); border:1px solid var(--line); padding:32px 28px; grid-column:span 12; }
+    .timeline-title { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:var(--blood); text-transform:uppercase; margin-bottom:16px; }
+    .timeline-bar { height:80px; background:rgba(230,51,0,0.08); border:1px solid var(--line); position:relative; overflow:hidden; margin-bottom:8px; }
+    .timeline-bar::before { content:''; position:absolute; left:0; top:0; height:100%; width:calc(12/24*100%); background:rgba(230,51,0,0.15); border-right:2px solid var(--blood); }
+    .timeline-bar::after { content:'MEAL 1 — 12:00  |  MEAL 2 — 19:00'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-2); letter-spacing:0.15em; white-space:nowrap; }
+    .timeline-labels { display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--ink-3); margin-bottom:12px; }
+    .timeline-key { display:flex; gap:24px; }
+    .key-item { display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-3); letter-spacing:0.1em; }
+    .key-swatch { width:12px; height:12px; }
+    .key-swatch.fast { background:rgba(230,51,0,0.15); border:1px solid var(--blood); }
+    .key-swatch.feed { background:rgba(201,169,97,0.2); border:1px solid var(--gold); }
+
+    /* Training */
+    .training-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    @media (max-width:900px) { .training-grid { grid-template-columns:1fr; } }
+    .day-card { background:var(--bg-2); border:1px solid var(--line); overflow:hidden; }
+    .day-card.optional { border-style:dashed; }
+    .day-head { padding:28px 28px 20px; display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid var(--line); }
+    .day-head .left .small { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.3em; color:var(--ink-3); text-transform:uppercase; margin-bottom:6px; }
+    .day-head .left h3 { font-family:'Anton',sans-serif; font-size:28px; text-transform:uppercase; letter-spacing:-0.01em; }
+    .day-head .right { text-align:right; }
+    .focus { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; background:rgba(201,169,97,0.1); padding:6px 10px; }
+    .exercise-table { width:100%; border-collapse:collapse; }
+    .exercise-table thead th { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; padding:12px 20px; text-align:left; border-bottom:1px solid var(--line); background:var(--bg-3); }
+    .exercise-table thead th.center,.exercise-table tbody td.center,.ex-sets,.ex-reps,.ex-fail { text-align:center; }
+    .exercise-table tbody tr { border-bottom:1px solid var(--line); transition:background 0.15s; }
+    .exercise-table tbody tr:hover { background:rgba(255,255,255,0.02); }
+    .exercise-table tbody tr:last-child { border-bottom:none; }
+    .exercise-table tbody td { padding:16px 20px; vertical-align:top; }
+    .ex-name { font-weight:600; font-size:14px; margin-bottom:4px; }
+    .ex-note { font-size:12px; color:var(--ink-3); }
+    .ex-sets { font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--gold); font-size:15px; }
+    .ex-reps { font-family:'Oswald',monospace; font-size:14px; color:var(--ink-2); }
+    .ex-fail { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--blood); font-weight:700; }
+    .day-foot { padding:16px 20px; background:var(--bg-3); border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--ink-3); }
+
+    /* Supplements */
+    .supp-table { width:100%; border-collapse:collapse; }
+    .supp-table thead th { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; padding:14px 20px; text-align:left; border-bottom:2px solid var(--line-2); background:var(--bg-2); }
+    .supp-table tbody tr { border-bottom:1px solid var(--line); transition:background 0.15s; }
+    .supp-table tbody tr:hover { background:rgba(255,255,255,0.02); }
+    .supp-table tbody td { padding:18px 20px; vertical-align:middle; font-size:14px; color:var(--ink-2); }
+    .supp-name { font-family:'Oswald',sans-serif; font-weight:600; font-size:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.05em; }
+    .supp-dose { font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:13px; font-weight:700; }
+    .supp-note { margin-top:24px; background:var(--bg-2); border:1px solid var(--line); border-left:3px solid var(--gold); padding:24px 28px; font-size:14px; color:var(--ink-2); line-height:1.7; }
+
+    /* Rules */
+    .rules-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    @media (max-width:900px) { .rules-grid { grid-template-columns:1fr; } }
+    .commandment { background:var(--bg-2); border:1px solid var(--line); padding:32px 28px; }
+    .commandment .num { font-family:'Anton',sans-serif; font-size:48px; color:var(--blood); line-height:1; margin-bottom:12px; opacity:0.4; }
+    .commandment h4 { font-family:'Oswald',sans-serif; font-weight:600; font-size:16px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+    .commandment p { font-size:14px; color:var(--ink-2); line-height:1.7; }
+
+    /* Weeks */
+    .weeks { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    @media (max-width:900px) { .weeks { grid-template-columns:repeat(2,1fr); } }
+    .week { background:var(--bg-2); border:1px solid var(--line); padding:28px 24px; position:relative; }
+    .week::before { content:''; position:absolute; top:0; left:0; height:3px; background:var(--blood); width:25%; }
+    .week:nth-child(2)::before { width:50%; }
+    .week:nth-child(3)::before { width:75%; }
+    .week:nth-child(4)::before { width:100%; }
+    .week-num { font-family:'Anton',sans-serif; font-size:64px; line-height:1; color:var(--ink); letter-spacing:-0.02em; }
+    .week-num span { color:var(--blood); }
+    .week-title { font-family:'Oswald',sans-serif; font-weight:500; font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin:8px 0 16px; }
+    .week p { font-size:13px; color:var(--ink-2); line-height:1.6; }
+
+    /* Final */
+    .final { padding:140px 0 100px; text-align:center; border-bottom:1px solid var(--line); }
+    .final-title { font-family:'Anton',sans-serif; font-size:clamp(60px,12vw,180px); line-height:0.9; text-transform:uppercase; margin-bottom:32px; letter-spacing:-0.02em; }
+    .final-title .accent { color:var(--blood); font-style:italic; }
+    .final-quote { font-family:'Oswald',sans-serif; font-weight:300; font-size:18px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); max-width:600px; margin:0 auto; line-height:1.6; }
+
+    /* Footer */
+    footer { padding:40px 0; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; color:var(--ink-3); text-transform:uppercase; text-align:center; }
+    footer .stamp { display:inline-block; border:2px solid var(--blood); color:var(--blood); padding:12px 24px; margin-bottom:24px; letter-spacing:0.4em; transform:rotate(-2deg); font-weight:700; }
+
+    /* Animations */
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s ease,transform .8s ease; }
+    .reveal.in { opacity:1; transform:translateY(0); }
+
+    /* Responsive */
+    @media (max-width:900px) {
+      .section { padding:80px 0 60px; }
+      .wrap { padding:0 20px; }
+      .topbar-inner { padding:12px 20px; }
+      .topbar-right { display:none; }
+      .day-head { flex-direction:column; align-items:flex-start; gap:12px; }
+      .day-head .right { text-align:left; }
+      .exercise-table thead th:nth-child(3),
+      .exercise-table tbody td:nth-child(3) { display:none; }
+      .scroll-hint { display:none; }
+      .timeline-bar { height:60px; }
+      .timeline-labels { font-size:8px; }
+      .form-card { padding:32px 24px; }
+    }
+
+    /* Loading spinner */
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .spinner.show { display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span class="dot"></span>
+      <span>OPERATION // THE SECRET</span>
+    </div>
+    <div class="topbar-right">
+      <span>CLEARANCE: RESTRICTED</span>
+      <span>FILE 001</span>
+      <span>DURATION 28D</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== UNLOCK BANNER (shown after form submit) ===== -->
+<div id="unlock-banner">
+  ✓ ACCESS GRANTED — SCROLL DOWN TO BEGIN YOUR PROTOCOL
+</div>
+
+<!-- ══════════════════════════════════════
+     GATE PAGE (shown before form submit)
+══════════════════════════════════════ -->
+<div id="gate">
+
+  <!-- Hero -->
+  <div class="gate-hero wrap">
+    <div class="classified">CLASSIFIED // EYES ONLY</div>
+    <h1 class="gate-title">
+      THE <span class="accent">SECRET</span>
+    </h1>
+    <div class="gate-sub">PROTOCOL — 28 DAYS</div>
+
+    <div class="gate-meta">
+      <div class="meta-item">
+        <div class="label">Objective</div>
+        <div class="value blood">Strip Fat. Build Muscle.</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Method</div>
+        <div class="value">Train To Failure</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Diet</div>
+        <div class="value gold">High Protein / Low Carb</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Frequency</div>
+        <div class="value">4–5x / Week</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Difficulty</div>
+        <div class="value blood">Brutal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Section -->
+  <div class="gate-form-section wrap">
+    <div class="gate-form-inner">
+
+      <!-- Left: pitch -->
+      <div>
+        <div class="gate-pitch-label">// UNLOCK YOUR PROGRAMME</div>
+        <h2 class="gate-pitch-title">
+          ONE FORM.<br>28 DAYS OF <span class="acc">RESULTS.</span>
+        </h2>
+        <p class="gate-pitch-body">
+          This is not a cookie-cutter plan. <strong>This is the exact protocol</strong> used to build serious physiques in 4 weeks — full training schedule, nutrition rules, supplement stack, and week-by-week progression. Fill in the form. Access is immediate and free.
+        </p>
+        <div class="promises">
+          <div class="promise-item">
+            <div class="promise-icon">01</div>
+            <div><strong>Full 4-week training programme</strong> — 4 workouts a week, every exercise, every set, every rep range.</div>
+          </div>
+          <div class="promise-item">
+            <div class="promise-icon">02</div>
+            <div><strong>Nutrition protocol</strong> — exactly what to eat, when to eat, and what never to touch.</div>
+          </div>
+          <div class="promise-item">
+            <div class="promise-icon">03</div>
+            <div><strong>Supplement stack</strong> — 5 compounds that actually work, with doses and timing.</div>
+          </div>
+          <div class="promise-item">
+            <div class="promise-icon">04</div>
+            <div><strong>9 execution rules</strong> — the habits that separate results from excuses.</div>
+          </div>
+          <div class="promise-item">
+            <div class="promise-icon">05</div>
+            <div><strong>Week-by-week breakdown</strong> — what to expect each week so you don't quit.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="form-card">
+        <div class="form-header">
+          <div class="form-header-tag">// SECURE ACCESS FORM</div>
+          <h3>Get Instant Access</h3>
+          <p>// Fill in below — unlock the full protocol</p>
+        </div>
+
+        <form id="lead-form" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="first_name" placeholder="Oliver" autocomplete="given-name">
+              <div class="form-error" id="err-fname">Required</div>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Borch" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email">
+            <div class="form-error" id="err-email">Enter a valid email</div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp *</label>
+            <input type="tel" id="phone" name="phone" placeholder="+45 12 34 56 78" autocomplete="tel">
+            <div class="form-error" id="err-phone">Required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="goal">Your Primary Goal *</label>
+            <select id="goal" name="goal">
+              <option value="" disabled selected>— Select your goal —</option>
+              <option value="Lose fat and stay muscular">Lose fat and stay muscular</option>
+              <option value="Build muscle and get bigger">Build muscle and get bigger</option>
+              <option value="Body recomposition (both)">Body recomposition (both)</option>
+              <option value="Get shredded for an event or holiday">Get shredded for an event / holiday</option>
+              <option value="Build strength and size">Build strength and size</option>
+              <option value="Start from scratch / beginner">Start from scratch / beginner</option>
+            </select>
+            <div class="form-error" id="err-goal">Please select a goal</div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span id="btn-text">UNLOCK THE PROGRAMME</span>
+            <span class="arrow" id="btn-arrow">→</span>
+            <div class="spinner" id="btn-spinner"></div>
+          </button>
+
+          <div id="submit-error">
+            Something went wrong. Please try again or DM me directly.
+          </div>
+
+          <p class="form-small">// No spam. No subscriptions. Just the protocol.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end #gate -->
+
+
+<!-- ══════════════════════════════════════
+     FULL PROGRAMME (hidden until unlocked)
+══════════════════════════════════════ -->
+<div id="programme">
+
+  <!-- HERO -->
+  <section class="hero wrap reveal in">
+    <div class="classified">CLASSIFIED // ACCESS GRANTED</div>
+    <h1 class="hero-title">
+      THE <span class="accent">SECRET</span>
+    </h1>
+    <div class="hero-sub">PROTOCOL — 28 DAYS</div>
+
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="label">Objective</div>
+        <div class="value blood">Strip Fat. Build Muscle.</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Method</div>
+        <div class="value">Train To Failure</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Diet</div>
+        <div class="value gold">High Protein / Low Carb</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Frequency</div>
+        <div class="value">4–5x / Week</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Difficulty</div>
+        <div class="value blood">Brutal</div>
+      </div>
+    </div>
+
+    <div class="brief">
+      <strong>Mission Brief.</strong> 28 days. Two meals. Hard lifts. Every working set taken to true failure. No fluff, no fads, no excuses. You will be hungry. You will be sore. You will hate the first week. By week three, the mirror will be lying to your enemies. <strong>Read every word. Then execute.</strong>
+    </div>
+
+    <div class="scroll-hint">SCROLL TO EXECUTE</div>
+  </section>
+
+  <!-- NUTRITION -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">PROTOCOL 01 // NUTRITION</div>
+        <h2 class="section-title">EAT LIKE A<br>PREDATOR</h2>
+      </div>
+      <div class="section-sub">Two meals. Carnivore-leaning. Engineered for satiety, hormones &amp; recomposition.</div>
+    </div>
+
+    <div class="nutrition-grid">
+
+      <div class="rule-card span-4">
+        <div class="num">RULE 01</div>
+        <h3>FAST UNTIL 12:00</h3>
+        <p>No food before noon. <strong>Allowed:</strong> water, sparkling water, sugar-free sodas, black coffee, plain tea, electrolytes (no calories).</p>
+        <p>This is the easy part. Don't make it complicated.</p>
+      </div>
+
+      <div class="rule-card span-4">
+        <div class="num">RULE 02</div>
+        <h3>TWO MEALS / DAY</h3>
+        <p>Meal 1: ~12:00. Meal 2: ~19:00–20:00. That's it. No snacks. No grazing. No "just a little something."</p>
+        <p>If you're hungry between meals — drink water and shut up.</p>
+      </div>
+
+      <div class="rule-card span-4">
+        <div class="num">RULE 03</div>
+        <h3>MEAT FIRST. ALWAYS.</h3>
+        <p>Every meal starts with protein. Hit at least <strong>250–400g cooked meat per meal</strong>. Eat protein until full before anything else touches the plate.</p>
+      </div>
+
+      <div class="rule-card span-6">
+        <div class="num">EAT THIS</div>
+        <h3>THE GREEN LIGHT</h3>
+        <p style="margin-bottom:16px;">Whole, unprocessed, dense. <span class="yes">Eat freely.</span></p>
+        <ul class="eat-list">
+          <li>Ribeye, sirloin, ground beef (80/20)</li>
+          <li>Chicken thighs &gt; chicken breast</li>
+          <li>Eggs (whole, with yolk)</li>
+          <li>Avocado (1–2 per day)</li>
+          <li>Almonds, macadamias, walnuts</li>
+          <li>Salt — heavy. Real salt, not table junk.</li>
+          <li>Butter, ghee, tallow for cooking</li>
+          <li>Water — minimum 3L / day</li>
+        </ul>
+      </div>
+
+      <div class="rule-card span-6">
+        <div class="num">DO NOT EAT</div>
+        <h3>THE RED LIGHT</h3>
+        <p style="margin-bottom:16px;">If you eat this, you've broken the protocol. <span class="no">Restart the day.</span></p>
+        <ul class="ban-list">
+          <li>Bread, rice, pasta, oats, all grains</li>
+          <li>Sugar in any form (incl. honey, agave)</li>
+          <li>Seed oils (canola, sunflower, soybean)</li>
+          <li>Pork, fish, lamb (this round — keep it tight)</li>
+          <li>Alcohol — zero, all 28 days</li>
+          <li>Fruit juice, smoothies, oat milk</li>
+          <li>Anything labeled "low-fat" or "diet"</li>
+          <li>Snacks between meals</li>
+        </ul>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-title">// 24-HOUR FEEDING WINDOW</div>
+        <div class="timeline-bar"></div>
+        <div class="timeline-labels">
+          <span>00</span><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span>
+          <span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span>
+          <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
+          <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+        </div>
+        <div class="timeline-key">
+          <div class="key-item"><div class="key-swatch fast"></div>FASTING</div>
+          <div class="key-item"><div class="key-swatch feed"></div>MEAL WINDOW (12:00 &amp; 19:00)</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">PROTOCOL 02 // TRAINING</div>
+        <h2 class="section-title">TRAIN TO<br>FAILURE</h2>
+      </div>
+      <div class="section-sub">4 full-body days. Compound lifts. Every working set to true muscular failure.</div>
+    </div>
+
+    <div style="background:var(--bg-2);border:1px solid var(--line);padding:32px;margin-bottom:32px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--blood);margin-bottom:16px;">// TRAINING RULES OF ENGAGEMENT</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+        <div>
+          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Warm-up</div>
+          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">2 ramping sets per first compound. Work up to working weight. Warm-ups are NOT to failure.</div>
+        </div>
+        <div>
+          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Working Sets</div>
+          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">Last set of every exercise = absolute failure. Can't move the bar. No exceptions.</div>
+        </div>
+        <div>
+          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Rest Periods</div>
+          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">2–3 min between compound sets. 60–90s on isolation. Time it. Don't scroll.</div>
+        </div>
+        <div>
+          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Progression</div>
+          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">Beat last week's log. Add 2.5kg OR 1 rep on the failure set. Track everything in a notebook.</div>
+        </div>
+        <div>
+          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Form</div>
+          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">Full ROM. Controlled eccentric (2–3s down). No bounce. No ego. Failure with bad form doesn't count.</div>
+        </div>
+        <div>
+          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Cardio</div>
+          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">10,000 steps daily. That's it. No HIIT, no running. Walk. Recovery is sacred.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="training-grid">
+
+      <!-- MONDAY -->
+      <div class="day-card">
+        <div class="day-head">
+          <div class="left">
+            <div class="small">DAY 01 // MONDAY</div>
+            <h3>FULL BODY A</h3>
+          </div>
+          <div class="right"><span class="focus">SQUAT &amp; PUSH</span></div>
+        </div>
+        <table class="exercise-table">
+          <thead><tr><th>Exercise</th><th class="center">Sets</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+          <tbody>
+            <tr><td><div class="ex-name">Back Squat</div><div class="ex-note">Heavy. Belt + chalk OK.</div></td><td class="ex-sets">3</td><td class="ex-reps">6–8</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Bench Press</div><div class="ex-note">Pause 1s on chest.</div></td><td class="ex-sets">3</td><td class="ex-reps">6–8</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Pull-ups (or Lat Pulldown)</div><div class="ex-note">Bodyweight + load if &gt;10 reps.</div></td><td class="ex-sets">3</td><td class="ex-reps">AMRAP</td><td class="ex-fail">EVERY SET</td></tr>
+            <tr><td><div class="ex-name">Overhead Press</div><div class="ex-note">Strict. No leg drive.</div></td><td class="ex-sets">2</td><td class="ex-reps">8–10</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Barbell Row</div><div class="ex-note">Pendlay-style. Reset each rep.</div></td><td class="ex-sets">2</td><td class="ex-reps">8–10</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Hanging Leg Raise</div><div class="ex-note">Slow eccentric.</div></td><td class="ex-sets">2</td><td class="ex-reps">AMRAP</td><td class="ex-fail">EVERY SET</td></tr>
+          </tbody>
+        </table>
+        <div class="day-foot"><span><strong>EST. TIME</strong> · 60–75 MIN</span><span><strong>TARGET</strong> · CHEST / QUADS / BACK / SHOULDERS</span></div>
+      </div>
+
+      <!-- WEDNESDAY -->
+      <div class="day-card">
+        <div class="day-head">
+          <div class="left">
+            <div class="small">DAY 02 // WEDNESDAY</div>
+            <h3>FULL BODY B</h3>
+          </div>
+          <div class="right"><span class="focus">HINGE &amp; PULL</span></div>
+        </div>
+        <table class="exercise-table">
+          <thead><tr><th>Exercise</th><th class="center">Sets</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+          <tbody>
+            <tr><td><div class="ex-name">Romanian Deadlift</div><div class="ex-note">Hamstrings stretched. Bar close.</div></td><td class="ex-sets">3</td><td class="ex-reps">6–8</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Incline DB Press</div><div class="ex-note">30° bench. Stretch the chest.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Chin-ups</div><div class="ex-note">Underhand. Chin clears bar.</div></td><td class="ex-sets">3</td><td class="ex-reps">AMRAP</td><td class="ex-fail">EVERY SET</td></tr>
+            <tr><td><div class="ex-name">Bulgarian Split Squat</div><div class="ex-note">DBs. Front leg does the work.</div></td><td class="ex-sets">2</td><td class="ex-reps">8–10 / leg</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Dumbbell Curl</div><div class="ex-note">No swinging. Squeeze top.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Skullcrushers</div><div class="ex-note">EZ-bar. Elbows fixed.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">LAST SET</td></tr>
+          </tbody>
+        </table>
+        <div class="day-foot"><span><strong>EST. TIME</strong> · 60–75 MIN</span><span><strong>TARGET</strong> · POSTERIOR CHAIN / BACK / ARMS</span></div>
+      </div>
+
+      <!-- FRIDAY -->
+      <div class="day-card">
+        <div class="day-head">
+          <div class="left">
+            <div class="small">DAY 03 // FRIDAY</div>
+            <h3>FULL BODY C</h3>
+          </div>
+          <div class="right"><span class="focus">QUADS &amp; VERTICAL</span></div>
+        </div>
+        <table class="exercise-table">
+          <thead><tr><th>Exercise</th><th class="center">Sets</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+          <tbody>
+            <tr><td><div class="ex-name">Front Squat (or Leg Press)</div><div class="ex-note">Upright torso. Quads on fire.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Dips (Weighted if possible)</div><div class="ex-note">Lean forward = chest. Upright = tris.</div></td><td class="ex-sets">3</td><td class="ex-reps">AMRAP</td><td class="ex-fail">EVERY SET</td></tr>
+            <tr><td><div class="ex-name">T-Bar Row (or Chest-Supported)</div><div class="ex-note">Squeeze the lats. Don't yank.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Seated DB Shoulder Press</div><div class="ex-note">Full lockout. Stretch bottom.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Lying Leg Curl</div><div class="ex-note">Pause &amp; squeeze top of every rep.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Standing Calf Raise</div><div class="ex-note">Slow eccentric. Hold the stretch.</div></td><td class="ex-sets">3</td><td class="ex-reps">12–15</td><td class="ex-fail">LAST SET</td></tr>
+          </tbody>
+        </table>
+        <div class="day-foot"><span><strong>EST. TIME</strong> · 60–75 MIN</span><span><strong>TARGET</strong> · QUADS / SHOULDERS / BACK / CALVES</span></div>
+      </div>
+
+      <!-- SATURDAY (OPTIONAL) -->
+      <div class="day-card optional">
+        <div class="day-head">
+          <div class="left">
+            <div class="small">DAY 04 // SATURDAY (OPTIONAL 5TH)</div>
+            <h3>ARMS &amp; WEAK POINTS</h3>
+          </div>
+          <div class="right"><span class="focus">PUMP &amp; FINISH</span></div>
+        </div>
+        <table class="exercise-table">
+          <thead><tr><th>Exercise</th><th class="center">Sets</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+          <tbody>
+            <tr><td><div class="ex-name">Close-Grip Bench Press</div><div class="ex-note">Hands shoulder-width. Triceps lead.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Barbell Curl</div><div class="ex-note">Strict. No hip drive.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Cable Row (Wide Grip)</div><div class="ex-note">Mid-back focus. Pull to chest.</div></td><td class="ex-sets">3</td><td class="ex-reps">10–12</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">DB Lateral Raise</div><div class="ex-note">Pinky up. Shoulders 3D.</div></td><td class="ex-sets">3</td><td class="ex-reps">12–15</td><td class="ex-fail">EVERY SET</td></tr>
+            <tr><td><div class="ex-name">Hammer Curl</div><div class="ex-note">Brachialis. Thicker arms.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">LAST SET</td></tr>
+            <tr><td><div class="ex-name">Triceps Rope Pushdown</div><div class="ex-note">Split rope at lockout. Squeeze hard.</div></td><td class="ex-sets">2</td><td class="ex-reps">12–15</td><td class="ex-fail">LAST SET</td></tr>
+          </tbody>
+        </table>
+        <div class="day-foot"><span><strong>EST. TIME</strong> · 50–60 MIN</span><span><strong>SKIP IF</strong> · UNDER-RECOVERED OR &lt;7H SLEEP</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SUPPLEMENTS -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">PROTOCOL 03 // STACK</div>
+        <h2 class="section-title">SUPPLEMENT<br>STACK</h2>
+      </div>
+      <div class="section-sub">Minimal. Effective. No "miracle powders" or pre-workout sugar bombs.</div>
+    </div>
+
+    <table class="supp-table">
+      <thead>
+        <tr><th>Compound</th><th>Dose</th><th>Timing</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><div class="supp-name">Tongkat Ali</div></td><td><span class="supp-dose">400–600 mg</span></td><td>Morning, empty stomach</td><td>Free testosterone &amp; libido. Mood &amp; drive.</td></tr>
+        <tr><td><div class="supp-name">Fish Oil (EPA/DHA)</div></td><td><span class="supp-dose">2–3 g combined</span></td><td>With meal 1</td><td>Joint health, anti-inflammatory, brain.</td></tr>
+        <tr><td><div class="supp-name">L-Carnitine Tartrate</div></td><td><span class="supp-dose">2–3 g</span></td><td>30 min pre-workout</td><td>Fat oxidation. Pump. Recovery.</td></tr>
+        <tr><td><div class="supp-name">Creatine Monohydrate</div></td><td><span class="supp-dose">5 g</span></td><td>Daily, any time</td><td>Strength. Cell volume. Non-negotiable.</td></tr>
+        <tr><td><div class="supp-name">Electrolytes</div></td><td><span class="supp-dose">1 serving</span></td><td>Fasting hours</td><td>Sodium, potassium, magnesium. Headache &amp; cramp insurance.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="supp-note">
+      <strong>// CYCLE PROTOCOL</strong>
+      Run creatine for the full 4 weeks. Once you see real growth (week 4–5 mark), drop creatine and run a strict <strong>3–4 week pure carnivore phase</strong> (meat + salt + water — nothing else). This re-sensitizes the body and locks in the lean physique. Re-introduce creatine after.
+    </div>
+  </section>
+
+  <!-- EXECUTION RULES -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">PROTOCOL 04 // DOCTRINE</div>
+        <h2 class="section-title">RULES OF<br>EXECUTION</h2>
+      </div>
+      <div class="section-sub">Break any of these and you've broken the protocol. Restart the day.</div>
+    </div>
+
+    <div class="rules-grid">
+      <div class="commandment"><div class="num">01</div><h4>SLEEP IS THE LIFT</h4><p>7–9 hours, every night. Phone out of the bedroom. Cold, dark room. If you sleep 5 hours, you didn't train — you damaged tissue you can't repair.</p></div>
+      <div class="commandment"><div class="num">02</div><h4>FAILURE OR FAKE</h4><p>If the last rep moves smooth, you didn't fail. Failure means the bar stops mid-rep with full effort. No cheating, no "I had one more in me."</p></div>
+      <div class="commandment"><div class="num">03</div><h4>TRACK EVERY REP</h4><p>Notebook or notes app. Date, exercise, weight, reps. If you're not tracking, you're guessing. Guessing doesn't grow muscle.</p></div>
+      <div class="commandment"><div class="num">04</div><h4>WEIGH IN DAILY</h4><p>Same time. Same conditions. Right after the bathroom, before water. Track the 7-day average — that's the real number. Daily fluctuations are noise.</p></div>
+      <div class="commandment"><div class="num">05</div><h4>PHOTO WEEKLY</h4><p>Front, side, back. Same lighting, same time of day. The mirror lies. The scale lies. Photos don't.</p></div>
+      <div class="commandment"><div class="num">06</div><h4>NO ALCOHOL. ZERO.</h4><p>One beer destroys 36 hours of recovery and tanks testosterone. 28 days. You can survive. If you can't, the program isn't your problem.</p></div>
+      <div class="commandment"><div class="num">07</div><h4>WALK 10K STEPS</h4><p>Daily. Non-negotiable. Best fat-loss tool ever invented. Doesn't tax recovery. Costs nothing. No excuses.</p></div>
+      <div class="commandment"><div class="num">08</div><h4>HUNGRY ≠ EMERGENCY</h4><p>Hunger is data. Not a command. Drink water, salt your tongue, get back to work. The first 5 days are the hardest. After that, the body adapts.</p></div>
+      <div class="commandment"><div class="num">09</div><h4>SHOW UP UGLY</h4><p>Tired? Train. Stiff? Train. Bad day at work? Train harder. The session you don't want to do is the one that builds you. Discipline &gt; motivation. Always.</p></div>
+    </div>
+  </section>
+
+  <!-- WEEK PROGRESSION -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">PROTOCOL 05 // TIMELINE</div>
+        <h2 class="section-title">28-DAY<br>PROGRESSION</h2>
+      </div>
+      <div class="section-sub">What to expect. What's normal. What to push through.</div>
+    </div>
+
+    <div class="weeks">
+      <div class="week"><div class="week-num">0<span>1</span></div><div class="week-title">// THE PURGE</div><p>Brutal. Sugar withdrawal. Bad sleep. Brain fog. You will hate me, hate the food, hate the gym. Push through. <strong style="color:var(--ink);">Do not quit.</strong> Day 4–5 is the worst.</p></div>
+      <div class="week"><div class="week-num">0<span>2</span></div><div class="week-title">// THE SHIFT</div><p>Energy returns. Hunger drops sharply. Lifts feel sharp again. Waist visibly tighter. This is when belief starts. Add weight to the working sets.</p></div>
+      <div class="week"><div class="week-num">0<span>3</span></div><div class="week-title">// THE LOCK-IN</div><p>Visible muscle. Veins showing on arms. Shirts fit different. People comment. Stay disciplined — this is where most people relax and ruin it.</p></div>
+      <div class="week"><div class="week-num">0<span>4</span></div><div class="week-title">// THE PROOF</div><p>Tightest you've looked in years. Strength up across all main lifts. Confidence built from <em>doing the thing</em>, not talking about it. Now you decide whether to keep going.</p></div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final wrap reveal">
+    <h2 class="final-title">EXECUTE.<br><span class="accent">DON'T NEGOTIATE.</span></h2>
+    <p class="final-quote">"Discipline equals freedom.<br>Comfort equals decay."</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="stamp">PROTOCOL ISSUED</div>
+      <div>
+        THE SECRET // 28-DAY HYPERTROPHY &amp; FAT-LOSS DIRECTIVE<br>
+        <span style="color:var(--ink-3);">DELIVERED VIA SECURE CHANNEL · PRIVATE USE ONLY</span>
+      </div>
+      <div style="margin-top:24px;color:var(--ink-3);font-size:10px;">
+        NOT MEDICAL ADVICE. CONSULT A DOCTOR BEFORE STARTING ANY NEW DIET OR TRAINING PROGRAM,<br>
+        ESPECIALLY IF YOU HAVE PRE-EXISTING CONDITIONS OR TAKE MEDICATIONS.
+      </div>
+    </div>
+  </footer>
+
+</div>
+<!-- end #programme -->
+
+
+<script>
+  const gate       = document.getElementById('gate');
+  const programme  = document.getElementById('programme');
+  const banner     = document.getElementById('unlock-banner');
+  const form       = document.getElementById('lead-form');
+  const submitBtn  = document.getElementById('submit-btn');
+  const btnText    = document.getElementById('btn-text');
+  const btnArrow   = document.getElementById('btn-arrow');
+  const btnSpinner = document.getElementById('btn-spinner');
+  const submitErr  = document.getElementById('submit-error');
+
+  if (localStorage.getItem('secret_unlocked') === '1') {
+    unlock(false);
+  }
+
+  function unlock(scrollToTop) {
+    gate.style.display = 'none';
+    programme.classList.add('unlocked');
+    banner.classList.add('show');
+    if (scrollToTop) window.scrollTo({ top: 0, behavior: 'smooth' });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('#programme .section, #programme .hero, #programme .final').forEach(el => {
+      el.classList.add('reveal');
+      obs.observe(el);
+    });
+  }
+
+  function validate() {
+    let ok = true;
+    const showErr = (id) => { document.getElementById(id).classList.add('show'); ok = false; };
+    const hideErr = (id) => { document.getElementById(id).classList.remove('show'); };
+    document.getElementById('fname').value.trim() ? hideErr('err-fname') : showErr('err-fname');
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim()) ? hideErr('err-email') : showErr('err-email');
+    document.getElementById('phone').value.trim() ? hideErr('err-phone') : showErr('err-phone');
+    document.getElementById('goal').value ? hideErr('err-goal') : showErr('err-goal');
+    return ok;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitErr.classList.remove('show');
+    if (!validate()) return;
+
+    btnText.textContent = 'SENDING...';
+    btnArrow.style.display = 'none';
+    btnSpinner.classList.add('show');
+    submitBtn.disabled = true;
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch('https://formspree.io/f/mlgzyebd', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        localStorage.setItem('secret_unlocked', '1');
+        unlock(true);
+      } else {
+        throw new Error('error');
+      }
+    } catch {
+      btnText.textContent = 'UNLOCK THE PROGRAMME';
+      btnArrow.style.display = 'inline';
+      btnSpinner.classList.remove('show');
+      submitBtn.disabled = false;
+      submitErr.classList.add('show');
+    }
+  });
+</script>
+
+</body>
+</html>
