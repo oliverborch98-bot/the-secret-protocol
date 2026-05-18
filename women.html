@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE SHIFT — 28-Day Toning & Fat Loss Protocol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Manrope:wght@400;500;600;700&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-2: #141414;
+      --bg-3: #1c1c1c;
+      --line: #2a2a2a;
+      --line-2: #3a3a3a;
+      --ink: #f4efe6;
+      --ink-2: #b8b3aa;
+      --ink-3: #6e6a64;
+      --rose: #c0376a;
+      --rose-2: #e0437c;
+      --gold: #c9a961;
+      --warn: #ffcc33;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 20% 0%, rgba(192,55,106,0.08), transparent 40%),
+        radial-gradient(circle at 80% 100%, rgba(201,169,97,0.05), transparent 40%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1000; opacity: 0.05;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    ::selection { background: var(--rose); color: #fff; }
+
+    /* TOP BAR */
+    .topbar {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .topbar-inner {
+      max-width: 1400px; margin: 0 auto; padding: 14px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .topbar-left { display:flex; align-items:center; gap:14px; color:var(--ink-2); }
+    .dot { width:8px; height:8px; border-radius:50%; background:var(--rose); box-shadow:0 0 10px var(--rose); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.4;} }
+    .topbar-right { color:var(--ink-3); display:flex; gap:20px; }
+    .topbar-right span:first-child { color:var(--gold); }
+
+    /* LAYOUT */
+    .wrap { max-width:1400px; margin:0 auto; padding:0 32px; }
+    .section { padding:100px 0 80px; border-bottom:1px solid var(--line); }
+    .section-head { display:flex; justify-content:space-between; align-items:flex-start; gap:40px; margin-bottom:56px; flex-wrap:wrap; }
+    .section-tag { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.25em; color:var(--rose); text-transform:uppercase; margin-bottom:12px; }
+    .section-title { font-family:'Anton',sans-serif; font-size:clamp(48px,8vw,100px); line-height:0.9; text-transform:uppercase; }
+    .section-sub { max-width:400px; font-size:15px; color:var(--ink-2); line-height:1.7; padding-top:8px; }
+
+    /* GATE */
+    #gate { min-height:100vh; display:flex; flex-direction:column; justify-content:center; }
+    .gate-hero { padding:80px 0 0; border-bottom:1px solid var(--line); }
+    .classified {
+      font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.4em; color:var(--rose);
+      margin-bottom:24px; display:inline-flex; align-items:center; gap:12px;
+    }
+    .classified::before { content:''; width:40px; height:1px; background:var(--rose); }
+    .gate-title { font-family:'Anton',sans-serif; font-size:clamp(80px,16vw,220px); line-height:0.85; letter-spacing:-0.02em; text-transform:uppercase; margin-bottom:8px; }
+    .gate-title .accent { color:var(--rose); font-style:italic; }
+    .gate-sub { font-family:'Anton',sans-serif; font-size:clamp(40px,8vw,110px); line-height:0.9; color:transparent; -webkit-text-stroke:1.5px var(--ink-2); letter-spacing:-0.01em; text-transform:uppercase; margin-bottom:48px; }
+    .gate-meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; margin-top:32px; padding-top:32px; border-top:1px solid var(--line); max-width:1100px; }
+    .meta-item .label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; margin-bottom:6px; }
+    .meta-item .value { font-family:'Oswald',sans-serif; font-weight:600; font-size:22px; color:var(--ink); text-transform:uppercase; letter-spacing:0.02em; }
+    .meta-item .value.rose { color:var(--rose); }
+    .meta-item .value.gold { color:var(--gold); }
+
+    /* GATE FORM */
+    .gate-form-section { padding:80px 0 100px; }
+    .gate-form-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    @media (max-width:900px) { .gate-form-inner { grid-template-columns:1fr; gap:48px; } }
+
+    .gate-pitch-label { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.3em; color:var(--rose); text-transform:uppercase; margin-bottom:20px; }
+    .gate-pitch-title { font-family:'Anton',sans-serif; font-size:clamp(36px,5vw,64px); line-height:0.95; text-transform:uppercase; letter-spacing:-0.01em; margin-bottom:28px; }
+    .gate-pitch-title .acc { color:var(--rose); font-style:italic; }
+    .gate-pitch-body { font-size:16px; color:var(--ink-2); line-height:1.75; border-left:2px solid var(--rose); padding-left:20px; margin-bottom:36px; }
+    .gate-pitch-body strong { color:var(--ink); }
+    .promises { display:flex; flex-direction:column; gap:14px; }
+    .promise-item { display:flex; align-items:flex-start; gap:14px; font-size:14px; color:var(--ink-2); }
+    .promise-icon { width:24px; height:24px; min-width:24px; border:1px solid var(--rose); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--rose); margin-top:1px; }
+    .promise-item strong { color:var(--ink); }
+
+    /* FORM CARD */
+    .form-card { background:var(--bg-2); border:1px solid var(--line-2); padding:48px 40px; position:relative; }
+    .form-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--rose),var(--gold)); }
+    .form-header { margin-bottom:32px; }
+    .form-header-tag { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:var(--rose); text-transform:uppercase; margin-bottom:10px; }
+    .form-header h3 { font-family:'Oswald',sans-serif; font-size:26px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; }
+    .form-header p { margin-top:8px; font-size:13px; color:var(--ink-3); font-family:'JetBrains Mono',monospace; }
+
+    .form-group { margin-bottom:20px; }
+    .form-group label { display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.25em; color:var(--ink-3); text-transform:uppercase; margin-bottom:8px; }
+    .form-group input, .form-group select {
+      width:100%; background:var(--bg-3); border:1px solid var(--line-2); color:var(--ink);
+      font-family:'Manrope',sans-serif; font-size:15px; padding:14px 16px; outline:none;
+      transition:border-color 0.2s; -webkit-appearance:none; appearance:none; border-radius:0;
+    }
+    .form-group input:focus, .form-group select:focus { border-color:var(--rose); }
+    .form-group input::placeholder { color:var(--ink-3); }
+    .form-group select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236e6a64' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; padding-right:40px; cursor:pointer; }
+    .form-group select option { background:#1c1c1c; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    @media (max-width:600px) { .form-row { grid-template-columns:1fr; } }
+
+    .submit-btn { width:100%; background:var(--rose); color:#fff; border:none; cursor:pointer; padding:18px 32px; font-family:'Oswald',sans-serif; font-size:18px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; margin-top:8px; transition:background 0.2s,transform 0.1s; display:flex; align-items:center; justify-content:center; gap:12px; }
+    .submit-btn:hover { background:var(--rose-2); }
+    .submit-btn:active { transform:scale(0.99); }
+    .submit-btn:disabled { opacity:0.5; cursor:not-allowed; }
+    .form-small { margin-top:16px; font-size:11px; color:var(--ink-3); font-family:'JetBrains Mono',monospace; text-align:center; letter-spacing:0.05em; }
+    .form-error { color:var(--rose-2); font-size:12px; font-family:'JetBrains Mono',monospace; margin-top:6px; display:none; }
+    .form-error.show { display:block; }
+    #submit-error { background:rgba(192,55,106,0.1); border:1px solid var(--rose); padding:14px 16px; font-size:13px; color:var(--rose-2); font-family:'JetBrains Mono',monospace; margin-top:16px; display:none; }
+    #submit-error.show { display:block; }
+
+    /* UNLOCK */
+    #programme { display:none; }
+    #programme.unlocked { display:block; }
+    #unlock-banner { display:none; background:var(--rose); color:#fff; text-align:center; padding:16px 32px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; }
+    #unlock-banner.show { display:block; }
+
+    /* PROGRAMME STYLES */
+    .hero { min-height:95vh; padding:80px 0 60px; display:flex; flex-direction:column; justify-content:center; position:relative; border-bottom:1px solid var(--line); }
+    .hero-title { font-family:'Anton',sans-serif; font-size:clamp(80px,16vw,240px); line-height:0.85; letter-spacing:-0.02em; color:var(--ink); margin-bottom:8px; text-transform:uppercase; }
+    .hero-title .accent { color:var(--rose); font-style:italic; }
+    .hero-sub { font-family:'Anton',sans-serif; font-size:clamp(40px,8vw,120px); line-height:0.9; color:transparent; -webkit-text-stroke:1.5px var(--ink-2); letter-spacing:-0.01em; text-transform:uppercase; margin-bottom:48px; }
+    .hero-meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:24px; margin-top:32px; padding-top:32px; border-top:1px solid var(--line); max-width:1100px; }
+    .brief { margin-top:64px; max-width:720px; font-size:17px; line-height:1.7; color:var(--ink-2); border-left:2px solid var(--rose); padding-left:24px; }
+    .brief strong { color:var(--ink); font-weight:600; }
+    .scroll-hint { position:absolute; bottom:24px; right:32px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:var(--ink-3); text-transform:uppercase; display:flex; align-items:center; gap:12px; }
+    .scroll-hint::after { content:''; width:1px; height:32px; background:linear-gradient(to bottom,var(--ink-3),transparent); animation:scrollDown 1.6s infinite ease-in-out; }
+    @keyframes scrollDown { 0%,100%{transform:scaleY(1);opacity:1;} 50%{transform:scaleY(0.5);opacity:0.3;} }
+
+    /* Nutrition */
+    .nutrition-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; }
+    .span-4 { grid-column:span 4; } .span-6 { grid-column:span 6; } .span-12 { grid-column:span 12; }
+    @media (max-width:900px) { .nutrition-grid > * { grid-column:span 12 !important; } }
+    .rule-card { background:var(--bg-2); border:1px solid var(--line); padding:32px 28px; }
+    .rule-card .num { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:var(--rose); margin-bottom:10px; }
+    .rule-card h3 { font-family:'Oswald',sans-serif; font-weight:600; font-size:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px; }
+    .rule-card p { font-size:14px; color:var(--ink-2); line-height:1.7; margin-bottom:8px; }
+    .yes { color:#4ade80; font-weight:600; } .no { color:var(--rose); font-weight:600; }
+    .eat-list, .ban-list { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin-top:4px; list-style:none; }
+    .eat-list li, .ban-list li { font-size:13px; color:var(--ink-2); padding:8px 0 8px 16px; border-bottom:1px solid var(--line); position:relative; }
+    .eat-list li::before { content:'↗'; position:absolute; left:0; color:#4ade80; font-size:11px; }
+    .ban-list li::before { content:'✕'; position:absolute; left:0; color:var(--rose); font-size:11px; }
+    @media (max-width:900px) { .eat-list,.ban-list { grid-template-columns:1fr; } }
+
+    .timeline { background:var(--bg-2); border:1px solid var(--line); padding:32px 28px; grid-column:span 12; }
+    .timeline-title { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:var(--rose); text-transform:uppercase; margin-bottom:16px; }
+    .timeline-bar { height:80px; background:rgba(192,55,106,0.08); border:1px solid var(--line); position:relative; overflow:hidden; margin-bottom:8px; }
+    .timeline-bar::before { content:''; position:absolute; left:0; top:0; height:100%; width:calc(12/24*100%); background:rgba(192,55,106,0.15); border-right:2px solid var(--rose); }
+    .timeline-bar::after { content:'MEAL 1 — 12:00  |  MEAL 2 — 19:00'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-2); letter-spacing:0.15em; white-space:nowrap; }
+    .timeline-labels { display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--ink-3); margin-bottom:12px; }
+    .timeline-key { display:flex; gap:24px; }
+    .key-item { display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-3); letter-spacing:0.1em; }
+    .key-swatch { width:12px; height:12px; }
+    .key-swatch.fast { background:rgba(192,55,106,0.15); border:1px solid var(--rose); }
+    .key-swatch.feed { background:rgba(201,169,97,0.2); border:1px solid var(--gold); }
+
+    /* Training */
+    .training-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    @media (max-width:900px) { .training-grid { grid-template-columns:1fr; } }
+    .day-card { background:var(--bg-2); border:1px solid var(--line); overflow:hidden; }
+    .day-card.optional { border-style:dashed; }
+    .day-head { padding:28px 28px 20px; display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid var(--line); }
+    .day-head .left .small { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.3em; color:var(--ink-3); text-transform:uppercase; margin-bottom:6px; }
+    .day-head .left h3 { font-family:'Anton',sans-serif; font-size:28px; text-transform:uppercase; }
+    .focus { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; background:rgba(201,169,97,0.1); padding:6px 10px; }
+    .exercise-table { width:100%; border-collapse:collapse; }
+    .exercise-table thead th { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; padding:12px 20px; text-align:left; border-bottom:1px solid var(--line); background:var(--bg-3); }
+    .exercise-table thead th.center,.ex-sets,.ex-reps,.ex-fail { text-align:center; }
+    .exercise-table tbody tr { border-bottom:1px solid var(--line); transition:background 0.15s; }
+    .exercise-table tbody tr:hover { background:rgba(255,255,255,0.02); }
+    .exercise-table tbody tr:last-child { border-bottom:none; }
+    .exercise-table tbody td { padding:16px 20px; vertical-align:top; }
+    .ex-name { font-weight:600; font-size:14px; margin-bottom:4px; }
+    .ex-note { font-size:12px; color:var(--ink-3); }
+    .ex-sets { font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--gold); font-size:15px; }
+    .ex-reps { font-family:'Oswald',monospace; font-size:14px; color:var(--ink-2); }
+    .ex-fail { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--rose); font-weight:700; }
+    .day-foot { padding:16px 20px; background:var(--bg-3); border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--ink-3); }
+
+    /* Supplements */
+    .supp-table { width:100%; border-collapse:collapse; }
+    .supp-table thead th { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; padding:14px 20px; text-align:left; border-bottom:2px solid var(--line-2); background:var(--bg-2); }
+    .supp-table tbody tr { border-bottom:1px solid var(--line); }
+    .supp-table tbody tr:hover { background:rgba(255,255,255,0.02); }
+    .supp-table tbody td { padding:18px 20px; font-size:14px; color:var(--ink-2); }
+    .supp-name { font-family:'Oswald',sans-serif; font-weight:600; font-size:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.05em; }
+    .supp-dose { font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:13px; font-weight:700; }
+    .supp-note { margin-top:24px; background:var(--bg-2); border:1px solid var(--line); border-left:3px solid var(--gold); padding:24px 28px; font-size:14px; color:var(--ink-2); line-height:1.7; }
+
+    /* Rules */
+    .rules-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    @media (max-width:900px) { .rules-grid { grid-template-columns:1fr; } }
+    .commandment { background:var(--bg-2); border:1px solid var(--line); padding:32px 28px; }
+    .commandment .num { font-family:'Anton',sans-serif; font-size:48px; color:var(--rose); line-height:1; margin-bottom:12px; opacity:0.4; }
+    .commandment h4 { font-family:'Oswald',sans-serif; font-weight:600; font-size:16px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+    .commandment p { font-size:14px; color:var(--ink-2); line-height:1.7; }
+
+    /* Weeks */
+    .weeks { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    @media (max-width:900px) { .weeks { grid-template-columns:repeat(2,1fr); } }
+    .week { background:var(--bg-2); border:1px solid var(--line); padding:28px 24px; position:relative; }
+    .week::before { content:''; position:absolute; top:0; left:0; height:3px; background:var(--rose); width:25%; }
+    .week:nth-child(2)::before { width:50%; } .week:nth-child(3)::before { width:75%; } .week:nth-child(4)::before { width:100%; }
+    .week-num { font-family:'Anton',sans-serif; font-size:64px; line-height:1; color:var(--ink); letter-spacing:-0.02em; }
+    .week-num span { color:var(--rose); }
+    .week-title { font-family:'Oswald',sans-serif; font-weight:500; font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin:8px 0 16px; }
+    .week p { font-size:13px; color:var(--ink-2); line-height:1.6; }
+
+    /* Final */
+    .final { padding:140px 0 100px; text-align:center; border-bottom:1px solid var(--line); }
+    .final-title { font-family:'Anton',sans-serif; font-size:clamp(60px,12vw,180px); line-height:0.9; text-transform:uppercase; margin-bottom:32px; letter-spacing:-0.02em; }
+    .final-title .accent { color:var(--rose); font-style:italic; }
+    .final-quote { font-family:'Oswald',sans-serif; font-weight:300; font-size:18px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); max-width:600px; margin:0 auto; line-height:1.6; }
+
+    footer { padding:40px 0; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; color:var(--ink-3); text-transform:uppercase; text-align:center; }
+    footer .stamp { display:inline-block; border:2px solid var(--rose); color:var(--rose); padding:12px 24px; margin-bottom:24px; letter-spacing:0.4em; transform:rotate(-2deg); font-weight:700; }
+
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s ease,transform .8s ease; }
+    .reveal.in { opacity:1; transform:translateY(0); }
+
+    .spinner { width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite; display:none; }
+    .spinner.show { display:block; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    @media (max-width:900px) {
+      .section { padding:80px 0 60px; } .wrap { padding:0 20px; }
+      .topbar-inner { padding:12px 20px; } .topbar-right { display:none; }
+      .day-head { flex-direction:column; align-items:flex-start; gap:12px; }
+      .exercise-table thead th:nth-child(3), .exercise-table tbody td:nth-child(3) { display:none; }
+      .scroll-hint { display:none; } .form-card { padding:32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span class="dot"></span>
+      <span>OPERATION // THE SHIFT</span>
+    </div>
+    <div class="topbar-right">
+      <span>FOR WOMEN ONLY</span>
+      <span>FILE 002</span>
+      <span>DURATION 28D</span>
+    </div>
+  </div>
+</div>
+
+<div id="unlock-banner">✓ ADGANG GIVET — SCROLL NED OG START DIN TRANSFORMATION</div>
+
+<!-- GATE -->
+<div id="gate">
+  <div class="gate-hero wrap">
+    <div class="classified">EXKLUSIVT // KUN FOR KVINDER</div>
+    <h1 class="gate-title">THE <span class="accent">SHIFT</span></h1>
+    <div class="gate-sub">PROTOCOL — 28 DAYS</div>
+    <div class="gate-meta">
+      <div class="meta-item"><div class="label">Mål</div><div class="value rose">Tonet. Stramt. Stærkt.</div></div>
+      <div class="meta-item"><div class="label">Metode</div><div class="value">Styrke + Glutes</div></div>
+      <div class="meta-item"><div class="label">Kost</div><div class="value gold">Høj Protein / Lavt Kulhydrat</div></div>
+      <div class="meta-item"><div class="label">Frekvens</div><div class="value">4x / Uge</div></div>
+      <div class="meta-item"><div class="label">Resultat</div><div class="value rose">Synligt på 2 uger</div></div>
+    </div>
+  </div>
+
+  <div class="gate-form-section wrap">
+    <div class="gate-form-inner">
+      <div>
+        <div class="gate-pitch-label">// FÅ GRATIS ADGANG</div>
+        <h2 class="gate-pitch-title">ÉT FORM.<br>28 DAGE TIL <span class="acc">RESULTATER.</span></h2>
+        <p class="gate-pitch-body">
+          Dette er ikke endnu et "kvinde-program" med lette vægte og salater. <strong>Det er en reel protokol</strong> der giver dig et strammere, stærkere og mere tonet krop på 28 dage. Udfyld formularen. Adgang er gratis og øjeblikkelig.
+        </p>
+        <div class="promises">
+          <div class="promise-item"><div class="promise-icon">01</div><div><strong>4-ugers træningsprogram</strong> — glute-fokuseret, fuldt krops, 4x om ugen.</div></div>
+          <div class="promise-item"><div class="promise-icon">02</div><div><strong>Kostprotokol</strong> — hvad du spiser, hvornår, og hvad du aldrig må røre.</div></div>
+          <div class="promise-item"><div class="promise-icon">03</div><div><strong>Supplement stack</strong> — 5 kosttilskud der faktisk virker for kvinder.</div></div>
+          <div class="promise-item"><div class="promise-icon">04</div><div><strong>9 regler</strong> — vanerne der adskiller resultater fra undskyldninger.</div></div>
+          <div class="promise-item"><div class="promise-icon">05</div><div><strong>Uge-for-uge breakdown</strong> — hvad du kan forvente så du ikke giver op.</div></div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-header">
+          <div class="form-header-tag">// GRATIS ADGANG</div>
+          <h3>Start din transformation</h3>
+          <p>// Udfyld nedenfor — få adgang med det samme</p>
+        </div>
+        <form id="lead-form" novalidate>
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+          <input type="hidden" name="subject" value="Ny kvindelig lead — The Shift Protocol">
+          <input type="hidden" name="botcheck" style="display:none">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Fornavn *</label>
+              <input type="text" id="fname" name="first_name" placeholder="Sarah" autocomplete="given-name">
+              <div class="form-error" id="err-fname">Påkrævet</div>
+            </div>
+            <div class="form-group">
+              <label for="lname">Efternavn</label>
+              <input type="text" id="lname" name="last_name" placeholder="Jensen" autocomplete="family-name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="dig@email.com" autocomplete="email">
+            <div class="form-error" id="err-email">Ugyldig email</div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon / WhatsApp *</label>
+            <input type="tel" id="phone" name="phone" placeholder="+45 12 34 56 78" autocomplete="tel">
+            <div class="form-error" id="err-phone">Påkrævet</div>
+          </div>
+          <div class="form-group">
+            <label for="goal">Dit primære mål *</label>
+            <select id="goal" name="goal">
+              <option value="" disabled selected>— Vælg dit mål —</option>
+              <option value="Tabe fedt og blive mere tonet">Tabe fedt og blive mere tonet</option>
+              <option value="Bygge glutes og strammere krop">Bygge glutes og strammere krop</option>
+              <option value="Body recomp (fedt tab + muskel)">Body recomp (fedt tab + muskel)</option>
+              <option value="Komme i form til en begivenhed">Komme i form til en begivenhed / ferie</option>
+              <option value="Blive stærkere og mere atletisk">Blive stærkere og mere atletisk</option>
+              <option value="Starte forfra som begynder">Starte forfra som begynder</option>
+            </select>
+            <div class="form-error" id="err-goal">Vælg venligst et mål</div>
+          </div>
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span id="btn-text">FÅ GRATIS ADGANG</span>
+            <span id="btn-arrow">→</span>
+            <div class="spinner" id="btn-spinner"></div>
+          </button>
+          <div id="submit-error" style="background:rgba(192,55,106,0.1);border:1px solid var(--rose);padding:14px;font-size:13px;color:var(--rose-2);font-family:'JetBrains Mono',monospace;margin-top:16px;display:none;">Noget gik galt. Prøv igen.</div>
+          <p class="form-small">// Ingen spam. Ingen abonnement. Kun programmet.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMME -->
+<div id="programme">
+
+  <section class="hero wrap reveal in">
+    <div class="classified">EKSKLUSIVT // ADGANG GIVET</div>
+    <h1 class="hero-title">THE <span class="accent">SHIFT</span></h1>
+    <div class="hero-sub">PROTOCOL — 28 DAYS</div>
+    <div class="hero-meta">
+      <div class="meta-item"><div class="label">Mål</div><div class="value rose">Tonet. Stramt. Stærkt.</div></div>
+      <div class="meta-item"><div class="label">Metode</div><div class="value">Styrke + Glutes</div></div>
+      <div class="meta-item"><div class="label">Kost</div><div class="value gold">Høj Protein / Lavt Kulhydrat</div></div>
+      <div class="meta-item"><div class="label">Frekvens</div><div class="value">4x / Uge</div></div>
+      <div class="meta-item"><div class="label">Resultat</div><div class="value rose">Synligt på 2 uger</div></div>
+    </div>
+    <div class="brief">
+      <strong>Mission.</strong> 28 dage. To måltider. Tunge løft. Hver arbejdssæt taget til ægte failure. Ingen fluff, ingen fads, ingen undskyldninger. Du vil være sulten. Du vil være øm. Du vil hade den første uge. Inden uge tre vil spejlet fortælle en anden historie. <strong>Læs hvert ord. Derefter eksekvér.</strong>
+    </div>
+    <div class="scroll-hint">SCROLL FOR AT STARTE</div>
+  </section>
+
+  <!-- NUTRITION -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">PROTOKOL 01 // KOST</div>
+        <h2 class="section-title">SPIS FOR<br>RESULTATER</h2>
+      </div>
+      <div class="section-sub">To måltider. Høj protein. Designet til fedt tab, hormoner og rekomposition.</div>
+    </div>
+    <div class="nutrition-grid">
+      <div class="rule-card span-4"><div class="num">REGEL 01</div><h3>FAST INDTIL 12:00</h3><p>Ingen mad før middag. <strong>Tilladt:</strong> vand, danskvand, sort kaffe, te, elektrolytter (ingen kalorier).</p><p>Det er den nemme del. Gør det ikke kompliceret.</p></div>
+      <div class="rule-card span-4"><div class="num">REGEL 02</div><h3>TO MÅLTIDER / DAG</h3><p>Måltid 1: ~12:00. Måltid 2: ~19:00–20:00. Det er det. Ingen snacks. Ingen "bare lidt noget."</p><p>Sulten imellem måltider? Drik vand.</p></div>
+      <div class="rule-card span-4"><div class="num">REGEL 03</div><h3>PROTEIN FØRST. ALTID.</h3><p>Hvert måltid starter med protein. Spis mindst <strong>200–300g tilberedt kød per måltid</strong>. Spis protein til du er mæt før noget andet.</p></div>
+      <div class="rule-card span-6"><div class="num">SPIS DETTE</div><h3>GRØNT LYS</h3><p style="margin-bottom:16px;">Hele, uforarbejdede fødevarer. <span class="yes">Spis frit.</span></p>
+        <ul class="eat-list">
+          <li>Kyllingelår, hakket oksekød, bøf</li><li>Æg (hele, med blomme)</li>
+          <li>Avocado (1–2 per dag)</li><li>Mandler, valnødder, macadamia</li>
+          <li>Smør og ghee til madlavning</li><li>Salt — rigeligt. Ægte salt.</li>
+          <li>Vand — minimum 3L / dag</li><li>Grøntsager til måltid 2 (brokkoli, spinat)</li>
+        </ul>
+      </div>
+      <div class="rule-card span-6"><div class="num">SPIS IKKE</div><h3>RØDT LYS</h3><p style="margin-bottom:16px;">Bryder du dette, har du brudt protokollen. <span class="no">Start dagen forfra.</span></p>
+        <ul class="ban-list">
+          <li>Brød, ris, pasta, havregryn, korn</li><li>Sukker i enhver form</li>
+          <li>Frøolier (raps, solsikke, soja)</li><li>Alkohol — nul, alle 28 dage</li>
+          <li>Frugtjuice, smoothies, havremælk</li><li>Snacks imellem måltider</li>
+          <li>Alt mærket "light" eller "sukkerfri" kage</li><li>Chips, slik, chokolade</li>
+        </ul>
+      </div>
+      <div class="timeline">
+        <div class="timeline-title">// 24-TIMERS SPISEVINDUE</div>
+        <div class="timeline-bar"></div>
+        <div class="timeline-labels"><span>00</span><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span></div>
+        <div class="timeline-key"><div class="key-item"><div class="key-swatch fast"></div>FASTE</div><div class="key-item"><div class="key-swatch feed"></div>SPISEVINDUE (12:00 &amp; 19:00)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">PROTOKOL 02 // TRÆNING</div>
+        <h2 class="section-title">TRÆN TIL<br>FAILURE</h2>
+      </div>
+      <div class="section-sub">4 dage om ugen. Glute-fokus + fuldt krop. Hvert arbejdssæt til ægte muskelfailure.</div>
+    </div>
+
+    <div style="background:var(--bg-2);border:1px solid var(--line);padding:32px;margin-bottom:32px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--rose);margin-bottom:16px;">// TRÆNINGSREGLER</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+        <div><div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Opvarmning</div><div style="font-size:14px;color:var(--ink-2);line-height:1.6;">2 opvarmningssæt per første compound. Opvarmning er IKKE til failure.</div></div>
+        <div><div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Arbejdssæt</div><div style="font-size:14px;color:var(--ink-2);line-height:1.6;">Sidste sæt af hver øvelse = absolut failure. Stangen stopper. Ingen undtagelser.</div></div>
+        <div><div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Hvileperioder</div><div style="font-size:14px;color:var(--ink-2);line-height:1.6;">2–3 min mellem compound sæt. 60–90s på isolation. Tag tid. Scroll ikke.</div></div>
+        <div><div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Progression</div><div style="font-size:14px;color:var(--ink-2);line-height:1.6;">Slå sidste uges log. Tilføj 2.5kg ELLER 1 rep på failure sættet. Track alt.</div></div>
+        <div><div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Form</div><div style="font-size:14px;color:var(--ink-2);line-height:1.6;">Fuldt ROM. Kontrolleret excentrisk (2–3s ned). Ingen bounce. Failure med dårlig form tæller ikke.</div></div>
+        <div><div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Cardio</div><div style="font-size:14px;color:var(--ink-2);line-height:1.6;">10.000 skridt dagligt. Det er det. Ingen løb, ingen HIIT. Gå. Restitution er hellig.</div></div>
+      </div>
+    </div>
+
+    <div class="training-grid">
+      <!-- MANDAG -->
+      <div class="day-card">
+        <div class="day-head"><div class="left"><div class="small">DAG 01 // MANDAG</div><h3>LOWER BODY A</h3></div><div class="right"><span class="focus">GLUTES &amp; QUADS</span></div></div>
+        <table class="exercise-table">
+          <thead><tr><th>Øvelse</th><th class="center">Sæt</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+          <tbody>
+            <tr><td><div class="ex-name">Hip Thrust (Barbell)</div><div class="ex-note">Skub hoften helt op. Klem gluteus i toppen.</div></td><td class="ex-sets">4</td><td class="ex-reps">8–10</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Back Squat (eller Goblet Squat)</div><div class="ex-note">Dybt ned. Knæene følger tæerne.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Romanian Deadlift</div><div class="ex-note">Stræk i hasemusklerne. Stangen tæt på benene.</div></td><td class="ex-sets">3</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Bulgarian Split Squat</div><div class="ex-note">DBs. Forreste ben laver arbejdet.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12 / ben</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Glute Kickback (kabel)</div><div class="ex-note">Langsomt og kontrolleret. Klem toppen.</div></td><td class="ex-sets">2</td><td class="ex-reps">12–15</td><td class="ex-fail">HVERT SÆT</td></tr>
+            <tr><td><div class="ex-name">Lying Leg Curl</div><div class="ex-note">Pause og klem i toppen af hvert rep.</div></td><td class="ex-sets">2</td><td class="ex-reps">12–15</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+          </tbody>
+        </table>
+        <div class="day-foot"><span><strong>TID</strong> · 60–75 MIN</span><span><strong>FOKUS</strong> · GLUTES / QUADS / HAMSTRINGS</span></div>
+      </div>
+
+      <!-- TIRSDAG -->
+      <div class="day-card">
+        <div class="day-head"><div class="left"><div class="small">DAG 02 // TIRSDAG</div><h3>UPPER BODY A</h3></div><div class="right"><span class="focus">RYG &amp; SKULDRE</span></div></div>
+        <table class="exercise-table">
+          <thead><tr><th>Øvelse</th><th class="center">Sæt</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+          <tbody>
+            <tr><td><div class="ex-name">Lat Pulldown</div><div class="ex-note">Bred greb. Træk til brystet. Stræk toppen.</div></td><td class="ex-sets">3</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Seated Cable Row</div><div class="ex-note">Klem skuldrene bagud. Ingen sving.</div></td><td class="ex-sets">3</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">DB Shoulder Press</div><div class="ex-note">Sidder ned. Fuldt lockout øverst.</div></td><td class="ex-sets">3</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">DB Lateral Raise</div><div class="ex-note">Lillefingeren op. Brede skuldre.</div></td><td class="ex-sets">3</td><td class="ex-reps">12–15</td><td class="ex-fail">HVERT SÆT</td></tr>
+            <tr><td><div class="ex-name">Face Pull (kabel)</div><div class="ex-note">Ror til ansigtet. Albuer høje.</div></td><td class="ex-sets">2</td><td class="ex-reps">15</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">DB Bicep Curl</div><div class="ex-note">Ingen sving. Klem toppen.</div></td><td class="ex-sets">2</td><td class="ex-reps">12–15</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+          </tbody>
+        </table>
+        <div class="day-foot"><span><strong>TID</strong> · 55–65 MIN</span><span><strong>FOKUS</strong> · RYG / SKULDRE / BICEPS</span></div>
+      </div>
+
+      <!-- TORSDAG -->
+      <div class="day-card">
+        <div class="day-head"><div class="left"><div class="small">DAG 03 // TORSDAG</div><h3>LOWER BODY B</h3></div><div class="right"><span class="focus">GLUTES &amp; HAMSTRINGS</span></div></div>
+        <table class="exercise-table">
+          <thead><tr><th>Øvelse</th><th class="center">Sæt</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+          <tbody>
+            <tr><td><div class="ex-name">Sumo Deadlift</div><div class="ex-note">Bredt stance. Tæer ud. Klem gluteus toppen.</div></td><td class="ex-sets">3</td><td class="ex-reps">6–8</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Leg Press</div><div class="ex-note">Høj fodposition = mere glutes. Fuld ROM.</div></td><td class="ex-sets">3</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Cable Pull-Through</div><div class="ex-note">Hip hinge. Stræk gluteus fuldt ud.</div></td><td class="ex-sets">3</td><td class="ex-reps">12–15</td><td class="ex-fail">HVERT SÆT</td></tr>
+            <tr><td><div class="ex-name">Walking Lunges (DBs)</div><div class="ex-note">Kontrolleret. Knæet rører næsten gulvet.</div></td><td class="ex-sets">2</td><td class="ex-reps">10 / ben</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Abductor Machine</div><div class="ex-note">Langsomt ud. Klem toppen. Ingen bounce.</div></td><td class="ex-sets">3</td><td class="ex-reps">15–20</td><td class="ex-fail">HVERT SÆT</td></tr>
+            <tr><td><div class="ex-name">Standing Calf Raise</div><div class="ex-note">Langsom excentrisk. Hold stræk i bunden.</div></td><td class="ex-sets">3</td><td class="ex-reps">15</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+          </tbody>
+        </table>
+        <div class="day-foot"><span><strong>TID</strong> · 60–70 MIN</span><span><strong>FOKUS</strong> · GLUTES / HAMSTRINGS / ABDUKTORER</span></div>
+      </div>
+
+      <!-- FREDAG -->
+      <div class="day-card">
+        <div class="day-head"><div class="left"><div class="small">DAG 04 // FREDAG</div><h3>UPPER BODY B</h3></div><div class="right"><span class="focus">BRYST &amp; TRICEPS</span></div></div>
+        <table class="exercise-table">
+          <thead><tr><th>Øvelse</th><th class="center">Sæt</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+          <tbody>
+            <tr><td><div class="ex-name">Incline DB Press</div><div class="ex-note">30° bænk. Stræk brystet. Kontrolleret ned.</div></td><td class="ex-sets">3</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Cable Chest Fly</div><div class="ex-note">Kryds hænderne. Klem brystet fuldt ud.</div></td><td class="ex-sets">3</td><td class="ex-reps">12–15</td><td class="ex-fail">HVERT SÆT</td></tr>
+            <tr><td><div class="ex-name">Tricep Rope Pushdown</div><div class="ex-note">Split rebet i bunden. Klem triceps.</div></td><td class="ex-sets">3</td><td class="ex-reps">12–15</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Chin-ups (eller Assisted)</div><div class="ex-note">Underhåndsgreb. Hagen over stangen.</div></td><td class="ex-sets">3</td><td class="ex-reps">AMRAP</td><td class="ex-fail">HVERT SÆT</td></tr>
+            <tr><td><div class="ex-name">Overhead Tricep Extension</div><div class="ex-note">DB eller kabel. Albuer fikserede.</div></td><td class="ex-sets">2</td><td class="ex-reps">12–15</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Planke</div><div class="ex-note">Holder positionen. Spænd hele kroppen.</div></td><td class="ex-sets">3</td><td class="ex-reps">45–60 SEK</td><td class="ex-fail">HVERT SÆT</td></tr>
+          </tbody>
+        </table>
+        <div class="day-foot"><span><strong>TID</strong> · 55–65 MIN</span><span><strong>FOKUS</strong> · BRYST / TRICEPS / RYG / CORE</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPLEMENTS -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div><div class="section-tag">PROTOKOL 03 // STACK</div><h2 class="section-title">SUPPLEMENT<br>STACK</h2></div>
+      <div class="section-sub">Minimalt. Effektivt. Tilpasset kvinders hormoner og restitution.</div>
+    </div>
+    <table class="supp-table">
+      <thead><tr><th>Supplement</th><th>Dosis</th><th>Tidspunkt</th><th>Hvorfor</th></tr></thead>
+      <tbody>
+        <tr><td><div class="supp-name">Proteinpulver (Whey)</div></td><td><span class="supp-dose">25–30 g</span></td><td>Efter træning eller til måltid</td><td>Rammer dit proteinmål. Muskelopbygning og mæthed.</td></tr>
+        <tr><td><div class="supp-name">Kreatin Monohydrat</div></td><td><span class="supp-dose">3–5 g</span></td><td>Dagligt, når som helst</td><td>Styrke, muskelvolumen og restitution. Ikke kun for mænd.</td></tr>
+        <tr><td><div class="supp-name">Fiskeolie (EPA/DHA)</div></td><td><span class="supp-dose">2–3 g</span></td><td>Til måltid 1</td><td>Anti-inflammatorisk, led, hormonbalance, hjerne.</td></tr>
+        <tr><td><div class="supp-name">Magnesium (Glycinat)</div></td><td><span class="supp-dose">300–400 mg</span></td><td>Aften / inden sengetid</td><td>Søvnkvalitet, muskelrestitution, reducerer kramper.</td></tr>
+        <tr><td><div class="supp-name">Elektrolytter</div></td><td><span class="supp-dose">1 portion</span></td><td>Under fasten</td><td>Natrium, kalium, magnesium. Ingen hovedpine eller kramper.</td></tr>
+      </tbody>
+    </table>
+    <div class="supp-note"><strong>// OM KREATIN OG KVINDER</strong> Kreatin er et af de mest undersøgte og sikre kosttilskud der findes. Det giver dig ikke en "tung" eller oppustet krop — det giver dig mere styrke og bedre restitution. Kør det hele 4 uger. De første 3–5 dage kan du opleve en lille vægtøgning (vand i musklerne) — det er normalt og ønsket.</div>
+  </section>
+
+  <!-- RULES -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div><div class="section-tag">PROTOKOL 04 // REGLER</div><h2 class="section-title">REGLER FOR<br>EKSEKUTION</h2></div>
+      <div class="section-sub">Bryd én af disse og du har brudt protokollen.</div>
+    </div>
+    <div class="rules-grid">
+      <div class="commandment"><div class="num">01</div><h4>SØVN ER TRÆNING</h4><p>7–9 timer, hver nat. Telefon ude af soveværelset. Mørkt og køligt rum. Sover du 5 timer, genopbygger du ikke muskelvæv — du nedbryder det.</p></div>
+      <div class="commandment"><div class="num">02</div><h4>FAILURE ELLER FAKE</h4><p>Hvis det sidste rep kører glat, nåede du ikke failure. Failure betyder stangen stopper med fuld indsats. Ingen snyd.</p></div>
+      <div class="commandment"><div class="num">03</div><h4>TRACK HVERT REP</h4><p>Notesblok eller app. Dato, øvelse, vægt, reps. Tracker du ikke, gætter du. Gætning bygger ikke muskler.</p></div>
+      <div class="commandment"><div class="num">04</div><h4>VEJ DIG DAGLIGT</h4><p>Samme tidspunkt. Samme betingelser. Lige efter badeværelset, før vand. Brug 7-dages gennemsnittet — det er det rigtige tal.</p></div>
+      <div class="commandment"><div class="num">05</div><h4>UGENTLIGE FOTOS</h4><p>Forfra, siden, bagfra. Samme lys, samme tidspunkt. Spejlet lyver. Vægten lyver. Fotos gør ikke.</p></div>
+      <div class="commandment"><div class="num">06</div><h4>NULALKOHOL. ZERO.</h4><p>Én øl ødelægger 36 timers restitution og forstyrrer dine hormoner. 28 dage. Du overlever. Alkohol og resultater eksisterer ikke sammen.</p></div>
+      <div class="commandment"><div class="num">07</div><h4>GÅ 10.000 SKRIDT</h4><p>Dagligt. Ikke til forhandling. Det bedste fedttabsredskab der findes. Koster ingenting. Ingen undskyldninger.</p></div>
+      <div class="commandment"><div class="num">08</div><h4>SULT ≠ NØDSITUATION</h4><p>Sult er data. Ikke en kommando. Drik vand og gå tilbage til arbejdet. De første 5 dage er sværest. Derefter tilpasser kroppen sig.</p></div>
+      <div class="commandment"><div class="num">09</div><h4>MØD OP UANSET HVAD</h4><p>Træt? Træn. Øm? Træn. Dårlig dag? Træn hårdere. Den session du mindst vil have er den der bygger dig. Disciplin vinder altid.</p></div>
+    </div>
+  </section>
+
+  <!-- WEEKS -->
+  <section class="section wrap reveal">
+    <div class="section-head">
+      <div><div class="section-tag">PROTOKOL 05 // TIMELINE</div><h2 class="section-title">28-DAGES<br>PROGRESSION</h2></div>
+      <div class="section-sub">Hvad du kan forvente. Hvad der er normalt. Hvad du skal kæmpe igennem.</div>
+    </div>
+    <div class="weeks">
+      <div class="week"><div class="week-num">0<span>1</span></div><div class="week-title">// RENSELSEN</div><p>Hård. Sukkerabstinenser. Dårlig søvn. Du vil hade det. Push igennem. <strong style="color:var(--ink);">Giv ikke op.</strong> Dag 4–5 er det værste.</p></div>
+      <div class="week"><div class="week-num">0<span>2</span></div><div class="week-title">// SKIFTET</div><p>Energien vender tilbage. Sulten falder markant. Løftene føles skarpe. Taljen er synligt strammere. Nu begynder troen.</p></div>
+      <div class="week"><div class="week-num">0<span>3</span></div><div class="week-title">// LOCK-IN</div><p>Synlig definition. Tøjet sidder anderledes. Folk kommenterer. Bliv disciplineret — her slapper de fleste af og ødelægger det.</p></div>
+      <div class="week"><div class="week-num">0<span>4</span></div><div class="week-title">// BEVISET</div><p>Strammeste du har set i årevis. Stærkere end da du startede. Selvtillid bygget af at <em>gøre det</em>, ikke tale om det. Nu beslutter du om du fortsætter.</p></div>
+    </div>
+  </section>
+
+  <section class="final wrap reveal">
+    <h2 class="final-title">EKSEKVÉR.<br><span class="accent">FORHANDL IKKE.</span></h2>
+    <p class="final-quote">"Stærk er ikke et look.<br>Det er en beslutning du træffer hver dag."</p>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="stamp">PROTOKOL UDSTEDT</div>
+      <div>THE SHIFT // 28-DAGES TONING &amp; FEDTTAB DIREKTIV<br><span style="color:var(--ink-3);">KUN TIL PRIVAT BRUG · IKKE TIL VIDERESALG</span></div>
+      <div style="margin-top:24px;color:var(--ink-3);font-size:10px;">IKKE MEDICINSK RÅDGIVNING. KONSULTÉR EN LÆGE FØR DU STARTER ET NYT KOST- ELLER TRÆNINGSPROGRAM.</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const gate      = document.getElementById('gate');
+  const programme = document.getElementById('programme');
+  const banner    = document.getElementById('unlock-banner');
+  const form      = document.getElementById('lead-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText   = document.getElementById('btn-text');
+  const btnArrow  = document.getElementById('btn-arrow');
+  const btnSpinner= document.getElementById('btn-spinner');
+  const submitErr = document.getElementById('submit-error');
+
+  if (localStorage.getItem('shift_unlocked') === '1') unlock(false);
+
+  function unlock(scroll) {
+    gate.style.display = 'none';
+    programme.classList.add('unlocked');
+    banner.classList.add('show');
+    if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('#programme .section, #programme .hero, #programme .final').forEach(el => {
+      el.classList.add('reveal'); obs.observe(el);
+    });
+  }
+
+  function validate() {
+    let ok = true;
+    const show = id => { document.getElementById(id).classList.add('show'); ok = false; };
+    const hide = id => document.getElementById(id).classList.remove('show');
+    document.getElementById('fname').value.trim() ? hide('err-fname') : show('err-fname');
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim()) ? hide('err-email') : show('err-email');
+    document.getElementById('phone').value.trim() ? hide('err-phone') : show('err-phone');
+    document.getElementById('goal').value ? hide('err-goal') : show('err-goal');
+    return ok;
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    submitErr.style.display = 'none';
+    if (!validate()) return;
+    btnText.textContent = 'SENDER...';
+    btnArrow.style.display = 'none';
+    btnSpinner.classList.add('show');
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+      if (res.ok) { localStorage.setItem('shift_unlocked', '1'); unlock(true); }
+      else throw new Error();
+    } catch {
+      btnText.textContent = 'FÅ GRATIS ADGANG';
+      btnArrow.style.display = 'inline';
+      btnSpinner.classList.remove('show');
+      submitBtn.disabled = false;
+      submitErr.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>
