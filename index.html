@@ -491,6 +491,99 @@
     }
     .spinner.show { display: block; }
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ========== VIDEO GATE ========== */
+    #video-gate {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 100px;
+    }
+    .video-gate-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 0.3em; color: var(--blood);
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .video-gate-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(48px, 8vw, 100px);
+      line-height: 0.9; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .video-gate-title .acc { color: var(--blood); font-style: italic; }
+    .video-gate-sub {
+      font-size: 16px; color: var(--ink-2); line-height: 1.7;
+      max-width: 560px; margin-bottom: 48px;
+    }
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 9/16;
+      background: #000;
+      border: 1px solid var(--line-2);
+      margin: 0 auto 40px;
+      overflow: hidden;
+    }
+    @media (min-width: 700px) {
+      .video-wrap {
+        aspect-ratio: 16/9;
+      }
+    }
+    #protocol-video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Overlay shown while video is not finished */
+    #video-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      pointer-events: none;
+      transition: opacity 0.5s;
+    }
+    #video-overlay.hidden { opacity: 0; }
+    .video-overlay-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; letter-spacing: 0.25em;
+      color: #fff; text-transform: uppercase;
+      text-align: center; margin-top: 16px;
+    }
+    #video-progress-bar {
+      position: absolute; bottom: 0; left: 0; height: 3px;
+      background: var(--blood); width: 0%;
+      transition: width 0.5s linear;
+      pointer-events: none;
+    }
+    /* Lock icon */
+    .lock-icon {
+      font-size: 48px; opacity: 0.9;
+    }
+    /* CTA after video ends */
+    #video-cta {
+      display: none;
+      text-align: center;
+      margin-top: 12px;
+    }
+    #video-cta.show { display: block; }
+    #video-cta p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; letter-spacing: 0.2em;
+      color: var(--blood); text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .proceed-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--blood); color: #fff; border: none;
+      cursor: pointer; padding: 18px 40px;
+      font-family: 'Oswald', sans-serif; font-size: 18px;
+      font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .proceed-btn:hover { background: var(--blood-2); }
   </style>
 </head>
 <body>
@@ -516,9 +609,38 @@
 </div>
 
 <!-- ══════════════════════════════════════
-     GATE PAGE (shown before form submit)
+     STEP 1: VIDEO GATE
 ══════════════════════════════════════ -->
-<div id="gate">
+<div id="video-gate">
+  <div class="wrap">
+    <div class="video-gate-label">// STEP 1 OF 2 — WATCH BEFORE YOU UNLOCK</div>
+    <h2 class="video-gate-title">SEE WHAT THE<br><span class="acc">PROTOCOL</span> DOES.</h2>
+    <p class="video-gate-sub">Watch the full video — then fill in the form to get instant, free access to the complete 28-day programme.</p>
+
+    <div class="video-wrap">
+      <video id="protocol-video" playsinline controls>
+        <source src="video.mp4" type="video/mp4">
+      </video>
+      <div id="video-overlay">
+        <div class="lock-icon">🔒</div>
+        <div class="video-overlay-text">Watch to unlock the programme</div>
+      </div>
+      <div id="video-progress-bar"></div>
+    </div>
+
+    <div id="video-cta">
+      <p>✓ VIDEO COMPLETE — YOU'RE READY</p>
+      <button class="proceed-btn" id="proceed-btn">
+        UNLOCK THE PROGRAMME →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     STEP 2: GATE PAGE (shown after video)
+══════════════════════════════════════ -->
+<div id="gate" style="display:none;">
 
   <!-- Hero -->
   <div class="gate-hero wrap">
@@ -1015,6 +1137,7 @@
 
 
 <script>
+  const videoGate  = document.getElementById('video-gate');
   const gate       = document.getElementById('gate');
   const programme  = document.getElementById('programme');
   const banner     = document.getElementById('unlock-banner');
@@ -1025,10 +1148,45 @@
   const btnSpinner = document.getElementById('btn-spinner');
   const submitErr  = document.getElementById('submit-error');
 
+  // Already fully unlocked
   if (localStorage.getItem('secret_unlocked') === '1') {
+    videoGate.style.display = 'none';
     unlock(false);
   }
+  // Video watched but form not yet submitted
+  else if (localStorage.getItem('video_watched') === '1') {
+    videoGate.style.display = 'none';
+    gate.style.display = 'block';
+  }
 
+  // ── Video logic ──
+  const video       = document.getElementById('protocol-video');
+  const overlay     = document.getElementById('video-overlay');
+  const progressBar = document.getElementById('video-progress-bar');
+  const videoCta    = document.getElementById('video-cta');
+  const proceedBtn  = document.getElementById('proceed-btn');
+
+  video.addEventListener('timeupdate', () => {
+    if (!video.duration) return;
+    const pct = (video.currentTime / video.duration) * 100;
+    progressBar.style.width = pct + '%';
+    // Hide overlay once user has started playing
+    if (video.currentTime > 1) overlay.classList.add('hidden');
+  });
+
+  video.addEventListener('ended', () => {
+    localStorage.setItem('video_watched', '1');
+    videoCta.classList.add('show');
+    overlay.classList.add('hidden');
+  });
+
+  proceedBtn.addEventListener('click', () => {
+    videoGate.style.display = 'none';
+    gate.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ── Unlock programme ──
   function unlock(scrollToTop) {
     gate.style.display = 'none';
     programme.classList.add('unlocked');
