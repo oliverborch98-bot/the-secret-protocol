@@ -1,600 +1,494 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE SECRET — 28-Day Protocol</title>
+  <title>THE SECRET — 28-Dages Protokol · builtbyborch</title>
+  <meta name="description" content="Det præcise 28-dages protokol til at forbrænde fedt og bygge muskler. Klassificeret. Kun adgang via sikker kanal.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Manrope:wght@400;500;600;700&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!--
-  Leads samles automatisk i Netlify dashboard.
-  Ingen konto til forms nødvendig — virker bare.
-  -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ════════════════════════════════════════════════════════
+       THE SECRET // DECLASSIFIED EDITORIAL
+       Aesthetic: intelligence dossier × high-fashion editorial
+       Anchor: "redaction reveal" — words unredact on scroll
+       ════════════════════════════════════════════════════════ */
     :root {
-      --bg: #0a0a0a;
-      --bg-2: #141414;
-      --bg-3: #1c1c1c;
-      --line: #2a2a2a;
-      --line-2: #3a3a3a;
-      --ink: #f4efe6;
-      --ink-2: #b8b3aa;
-      --ink-3: #6e6a64;
-      --blood: #e63300;
-      --blood-2: #ff4d1a;
-      --gold: #c9a961;
-      --warn: #ffcc33;
+      --bg:      #0b0a09;
+      --bg-2:    #121110;
+      --ink:     #f4efe6;
+      --ink-2:   #a8a39a;
+      --ink-3:   #6b665f;
+      --line:    rgba(255,255,255,0.08);
+      --line-2:  rgba(255,255,255,0.14);
+      --blood:   #e63300;
+      --blood-2: #ff5a26;
+      --gold:    #c9a961;
+      --glass:   rgba(255,255,255,0.035);
+      --glass-2: rgba(255,255,255,0.06);
+      --blur:    saturate(140%) blur(16px);
+      --ease:    cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow:  0 24px 80px -32px rgba(0,0,0,0.9);
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+    html { -webkit-text-size-adjust:100%; }
     body {
       background: var(--bg);
       color: var(--ink);
-      font-family: 'Manrope', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 400;
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      background-image:
-        radial-gradient(circle at 20% 0%, rgba(230,51,0,0.08), transparent 40%),
-        radial-gradient(circle at 80% 100%, rgba(201,169,97,0.05), transparent 40%);
-      background-attachment: fixed;
+      text-rendering: optimizeLegibility;
     }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.05;
-      mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    /* Animated gradient mesh — the only ambient motion */
+    .mesh {
+      position: fixed; inset: -20%;
+      z-index: -2; pointer-events: none;
+      background:
+        radial-gradient(40% 35% at 18% 8%, rgba(230,51,0,0.16), transparent 60%),
+        radial-gradient(35% 40% at 88% 78%, rgba(201,169,97,0.10), transparent 60%),
+        radial-gradient(45% 45% at 55% 120%, rgba(230,51,0,0.08), transparent 60%);
+      filter: blur(40px);
+      animation: drift 24s ease-in-out infinite alternate;
     }
-    ::selection { background: var(--blood); color: #fff; }
+    @keyframes drift {
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      100% { transform: translate3d(-3%,2%,0) scale(1.08); }
+    }
+    /* Film grain */
+    body::after {
+      content:''; position: fixed; inset:0; z-index: 9990;
+      pointer-events:none; opacity:0.045; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    ::selection { background: var(--blood); color:#fff; }
 
-    /* ========== TOP BAR ========== */
+    /* ── CUSTOM CURSOR ── */
+    .cursor-dot, .cursor-ring {
+      position: fixed; top:0; left:0; z-index: 9999;
+      pointer-events:none; border-radius:50%;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: difference;
+    }
+    .cursor-dot  { width:6px; height:6px; background:#fff; }
+    .cursor-ring {
+      width:38px; height:38px; border:1px solid rgba(255,255,255,0.6);
+      transition: width .3s var(--ease), height .3s var(--ease), background .3s, border-color .3s;
+    }
+    .cursor-ring.is-hover {
+      width:64px; height:64px; background: rgba(255,255,255,0.08); border-color: transparent;
+    }
+    @media (hover:none), (pointer:coarse) { .cursor-dot, .cursor-ring { display:none; } }
+
+    /* ── SCROLL PROGRESS ── */
+    .scroll-progress {
+      position: fixed; top:0; left:0; height:2px; width:0%;
+      background: linear-gradient(90deg, var(--blood), var(--gold));
+      z-index: 300; transition: width .1s linear;
+    }
+
+    /* ── PRELOADER ── */
+    #preloader {
+      position: fixed; inset:0; z-index: 9995;
+      background: var(--bg);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      transition: opacity .8s var(--ease), visibility .8s;
+    }
+    #preloader.done { opacity:0; visibility:hidden; }
+    .pre-label {
+      font-family:'JetBrains Mono',monospace; font-size:11px;
+      letter-spacing:0.4em; color:var(--blood); text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    .pre-count {
+      font-family:'Anton',sans-serif; font-size:clamp(64px,14vw,160px);
+      line-height:1; letter-spacing:-0.02em;
+    }
+    .pre-bar { width:min(280px,60vw); height:1px; background:var(--line-2); margin-top:24px; overflow:hidden; }
+    .pre-bar i { display:block; height:100%; width:0%; background:var(--blood); }
+
+    /* ════════ LAYOUT ════════ */
+    .wrap { max-width: 1320px; margin:0 auto; padding:0 40px; }
+    @media (max-width:720px){ .wrap{ padding:0 22px; } }
+
+    /* ── TOP BAR ── */
     .topbar {
-      position: sticky; top: 0; z-index: 200;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(12px);
+      position: fixed; top:0; left:0; right:0; z-index: 250;
+      background: rgba(11,10,9,0.55);
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
       border-bottom: 1px solid var(--line);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-family:'JetBrains Mono',monospace; font-size:11px;
+      letter-spacing:0.1em; text-transform:uppercase;
     }
     .topbar-inner {
-      max-width: 1400px; margin: 0 auto; padding: 14px 32px;
-      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      max-width:1320px; margin:0 auto; padding:14px 40px;
+      display:flex; justify-content:space-between; align-items:center; gap:24px;
     }
-    .topbar-left { display:flex; align-items:center; gap: 14px; color: var(--ink-2); }
-    .dot { width:8px; height:8px; border-radius:50%; background:var(--blood); box-shadow:0 0 10px var(--blood); animation:pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.4;} }
-    .topbar-right { color:var(--ink-3); display:flex; gap:20px; }
+    .brand-mark { display:flex; align-items:center; gap:12px; color:var(--ink); font-weight:500; }
+    .brand-mark b { color:var(--gold); font-weight:700; letter-spacing:0.05em; }
+    .dot { width:7px; height:7px; border-radius:50%; background:var(--blood); box-shadow:0 0 12px var(--blood); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+    .topbar-right { color:var(--ink-3); display:flex; gap:22px; }
     .topbar-right span:first-child { color:var(--gold); }
+    @media (max-width:720px){ .topbar-inner{ padding:12px 22px; } .topbar-right{ display:none; } }
 
-    /* ========== LAYOUT ========== */
-    .wrap { max-width:1400px; margin:0 auto; padding:0 32px; }
-    .section { padding:100px 0 80px; border-bottom:1px solid var(--line); }
-    .section-head { display:flex; justify-content:space-between; align-items:flex-start; gap:40px; margin-bottom:56px; flex-wrap:wrap; }
-    .section-tag { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.25em; color:var(--blood); text-transform:uppercase; margin-bottom:12px; }
-    .section-title { font-family:'Anton',sans-serif; font-size:clamp(48px,8vw,100px); line-height:0.9; text-transform:uppercase; letter-spacing:-0.01em; }
-    .section-sub { max-width:400px; font-size:15px; color:var(--ink-2); line-height:1.7; padding-top:8px; }
+    /* ── REDACTION REVEAL (the anchor) ── */
+    .redact { position:relative; display:inline-block; }
+    .redact > span { display:inline-block; }
+    .redact::after {
+      content:''; position:absolute; inset:-2px -6px;
+      background: var(--blood); transform-origin: right center;
+      transform: scaleX(0);
+    }
+    .redact.accent::after { background: var(--blood); }
+    .redact.ink::after    { background: var(--ink); }
 
-    /* ========== GATE PAGE ========== */
-    #gate {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .gate-hero {
-      padding: 80px 0 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .classified {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px; letter-spacing: 0.4em; color: var(--blood);
-      margin-bottom: 24px;
-      display: inline-flex; align-items: center; gap: 12px;
-    }
-    .classified::before { content:''; width:40px; height:1px; background:var(--blood); }
-    .gate-title {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(80px, 16vw, 220px);
-      line-height: 0.85;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .gate-title .accent { color: var(--blood); font-style: italic; }
-    .gate-sub {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(40px, 8vw, 110px);
-      line-height: 0.9;
-      color: transparent;
-      -webkit-text-stroke: 1.5px var(--ink-2);
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      margin-bottom: 48px;
-    }
-    .gate-meta {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 24px;
-      margin-top: 32px; padding-top: 32px;
-      border-top: 1px solid var(--line);
-      max-width: 1100px;
-    }
-    .meta-item .label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; margin-bottom:6px; }
-    .meta-item .value { font-family:'Oswald',sans-serif; font-weight:600; font-size:22px; color:var(--ink); text-transform:uppercase; letter-spacing:0.02em; }
-    .meta-item .value.blood { color:var(--blood); }
-    .meta-item .value.gold { color:var(--gold); }
-
-    /* ========== GATE FORM SECTION ========== */
-    .gate-form-section {
-      padding: 80px 0 100px;
-    }
-    .gate-form-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-    @media (max-width: 900px) { .gate-form-inner { grid-template-columns: 1fr; gap: 48px; } }
-
-    .gate-pitch-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px; letter-spacing: 0.3em; color: var(--blood);
-      text-transform: uppercase; margin-bottom: 20px;
-    }
-    .gate-pitch-title {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(36px, 5vw, 64px);
-      line-height: 0.95;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      margin-bottom: 28px;
-    }
-    .gate-pitch-title .acc { color: var(--blood); font-style: italic; }
-    .gate-pitch-body {
-      font-size: 16px; color: var(--ink-2); line-height: 1.75;
-      border-left: 2px solid var(--blood);
-      padding-left: 20px;
-      margin-bottom: 36px;
-    }
-    .gate-pitch-body strong { color: var(--ink); }
-    .promises {
-      display: flex; flex-direction: column; gap: 14px;
-    }
-    .promise-item {
-      display: flex; align-items: flex-start; gap: 14px;
-      font-size: 14px; color: var(--ink-2);
-    }
-    .promise-icon {
-      width: 24px; height: 24px; min-width: 24px;
-      border: 1px solid var(--blood);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; color: var(--blood);
-      margin-top: 1px;
-    }
-    .promise-item strong { color: var(--ink); }
-
-    /* ========== FORM CARD ========== */
-    .form-card {
-      background: var(--bg-2);
-      border: 1px solid var(--line-2);
-      padding: 48px 40px;
+    /* ── GLASS PRIMITIVES ── */
+    .glass {
       position: relative;
+      background: var(--glass);
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      box-shadow: var(--shadow);
     }
-    .form-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--blood), var(--gold));
+    .glass::before {
+      content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+      background: linear-gradient(160deg, rgba(255,255,255,0.10), transparent 38%);
+      opacity:0.7;
     }
-    .form-header {
-      margin-bottom: 32px;
-    }
-    .form-header-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; letter-spacing: 0.3em; color: var(--blood);
-      text-transform: uppercase; margin-bottom: 10px;
-    }
-    .form-header h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 26px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.05em;
-    }
-    .form-header p {
-      margin-top: 8px; font-size: 13px; color: var(--ink-3);
-      font-family: 'JetBrains Mono', monospace;
+    .glass-edge::after {
+      content:''; position:absolute; left:0; top:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, var(--blood), var(--gold), transparent);
+      opacity:0.8;
     }
 
-    .form-group { margin-bottom: 20px; }
+    /* ── TYPE SYSTEM ── */
+    .mono { font-family:'JetBrains Mono',monospace; }
+    .display { font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:-0.01em; line-height:0.88; }
+    .serif-i { font-family:'Instrument Serif',serif; font-style:italic; letter-spacing:0; text-transform:none; }
+    .eyebrow {
+      font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.3em;
+      color:var(--blood); text-transform:uppercase;
+    }
+
+    /* ════════ SECTIONS ════════ */
+    section.block { padding:120px 0; position:relative; }
+    .sec-head { display:grid; grid-template-columns: 1.4fr 0.9fr; gap:48px; align-items:end; margin-bottom:64px; }
+    .sec-index { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.25em; color:var(--ink-3); margin-bottom:18px; }
+    .sec-index b { color:var(--blood); }
+    .sec-title { font-family:'Anton',sans-serif; font-size:clamp(44px,7vw,104px); line-height:0.9; text-transform:uppercase; letter-spacing:-0.02em; }
+    .sec-sub { font-size:15px; color:var(--ink-2); line-height:1.75; max-width:380px; padding-bottom:10px; }
+    @media (max-width:820px){ .sec-head{ grid-template-columns:1fr; gap:20px; } .sec-sub{ max-width:none; } }
+
+    /* ── MARQUEE ── */
+    .marquee { overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:18px 0; background:rgba(0,0,0,0.2); }
+    .marquee-track { display:flex; gap:40px; width:max-content; animation:scroll-x 28s linear infinite; }
+    .marquee-track span { font-family:'Anton',sans-serif; font-size:clamp(24px,3vw,40px); text-transform:uppercase; letter-spacing:0.01em; color:transparent; -webkit-text-stroke:1px var(--ink-3); white-space:nowrap; }
+    .marquee-track span.fill { color:var(--blood); -webkit-text-stroke:0; }
+    @keyframes scroll-x { to { transform: translateX(-50%); } }
+
+    /* ════════ VIDEO GATE ════════ */
+    #video-gate { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:140px 0 90px; }
+    .vg-top { display:flex; align-items:center; gap:16px; margin-bottom:26px; }
+    .vg-brand { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; }
+    .vg-line { flex:1; height:1px; background:var(--line); }
+    .vg-step { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:var(--ink-3); text-transform:uppercase; }
+    .vg-title { font-family:'Anton',sans-serif; font-size:clamp(52px,9vw,128px); line-height:0.86; text-transform:uppercase; letter-spacing:-0.02em; margin-bottom:22px; }
+    .vg-title .serif-i { color:var(--blood); font-size:0.92em; }
+    .vg-sub { font-size:17px; color:var(--ink-2); line-height:1.7; max-width:560px; margin-bottom:50px; }
+
+    .video-shell { position:relative; max-width:920px; margin:0 auto; padding:10px; }
+    .video-wrap {
+      position:relative; width:100%; aspect-ratio:9/16; background:#000;
+      border-radius:6px; overflow:hidden; border:1px solid var(--line-2);
+      box-shadow: var(--shadow);
+    }
+    @media (min-width:760px){ .video-wrap{ aspect-ratio:16/9; } }
+    #protocol-video { width:100%; height:100%; object-fit:cover; display:block; }
+    .video-corner { position:absolute; width:18px; height:18px; border:1px solid var(--blood); z-index:3; pointer-events:none; }
+    .video-corner.tl { top:18px; left:18px; border-right:0; border-bottom:0; }
+    .video-corner.tr { top:18px; right:18px; border-left:0; border-bottom:0; }
+    .video-corner.bl { bottom:18px; left:18px; border-right:0; border-top:0; }
+    .video-corner.br { bottom:18px; right:18px; border-left:0; border-top:0; }
+    .video-rec { position:absolute; top:16px; right:16px; z-index:3; display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--ink); background:rgba(0,0,0,0.4); padding:5px 9px; border-radius:2px; }
+    .video-rec .dot { width:6px; height:6px; }
+    #video-overlay {
+      position:absolute; inset:0; z-index:2; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; pointer-events:none;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.35), rgba(0,0,0,0.7));
+      transition: opacity .6s var(--ease);
+    }
+    #video-overlay.hidden { opacity:0; }
+    .lock-badge {
+      width:84px; height:84px; border-radius:50%;
+      border:1px solid var(--line-2); background:var(--glass);
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+      display:flex; align-items:center; justify-content:center; font-size:30px;
+      box-shadow: 0 0 0 8px rgba(255,255,255,0.02);
+    }
+    .overlay-text { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.25em; color:#fff; text-transform:uppercase; margin-top:18px; }
+    #video-progress { position:absolute; bottom:0; left:0; height:3px; width:0%; background:var(--blood); z-index:3; transition:width .3s linear; }
+
+    #video-cta { display:none; text-align:center; margin-top:34px; }
+    #video-cta.show { display:block; animation: rise .6s var(--ease) both; }
+    @keyframes rise { from{ opacity:0; transform:translateY(16px);} to{ opacity:1; transform:translateY(0);} }
+    #video-cta .done-tag { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:18px; }
+
+    /* ── BUTTONS (magnetic) ── */
+    .btn {
+      position:relative; display:inline-flex; align-items:center; gap:14px;
+      background:var(--blood); color:#fff; border:none; cursor:pointer;
+      padding:20px 42px; font-family:'Space Grotesk',sans-serif; font-weight:600;
+      font-size:15px; letter-spacing:0.16em; text-transform:uppercase;
+      border-radius:3px; overflow:hidden; transition: background .25s, transform .15s;
+      will-change: transform;
+    }
+    .btn span, .btn .arrow { position:relative; z-index:1; }
+    .btn::before {
+      content:''; position:absolute; inset:0; z-index:0;
+      background: linear-gradient(120deg, var(--blood-2), var(--gold));
+      opacity:0; transition: opacity .35s var(--ease);
+    }
+    .btn:hover::before { opacity:1; }
+    .btn:disabled { opacity:0.5; cursor:not-allowed; }
+    .btn .arrow { font-size:18px; transition: transform .3s var(--ease); }
+    .btn:hover .arrow { transform: translateX(5px); }
+
+    /* ════════ FORM GATE ════════ */
+    #gate { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:140px 0 100px; }
+    .gate-grid { display:grid; grid-template-columns:1.05fr 0.95fr; gap:72px; align-items:center; }
+    @media (max-width:940px){ .gate-grid{ grid-template-columns:1fr; gap:44px; } }
+
+    .gate-eyebrow { margin-bottom:22px; }
+    .gate-pitch-title { font-family:'Anton',sans-serif; font-size:clamp(40px,5.4vw,76px); line-height:0.92; text-transform:uppercase; letter-spacing:-0.02em; margin-bottom:30px; }
+    .gate-pitch-title .serif-i { color:var(--blood); }
+    .gate-pitch-body { font-size:16px; color:var(--ink-2); line-height:1.8; border-left:2px solid var(--blood); padding-left:22px; margin-bottom:40px; max-width:520px; }
+    .gate-pitch-body strong { color:var(--ink); }
+
+    .promises { display:flex; flex-direction:column; gap:2px; }
+    .promise {
+      display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:start;
+      padding:18px 0; border-top:1px solid var(--line);
+      font-size:14px; color:var(--ink-2);
+    }
+    .promise:last-child { border-bottom:1px solid var(--line); }
+    .promise .pi { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blood); padding-top:2px; }
+    .promise strong { color:var(--ink); font-weight:600; }
+
+    .form-card { padding:46px 40px; }
+    @media (max-width:520px){ .form-card{ padding:34px 24px; } }
+    .form-head { margin-bottom:30px; }
+    .form-head .tag { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.28em; color:var(--blood); text-transform:uppercase; margin-bottom:12px; }
+    .form-head h3 { font-family:'Anton',sans-serif; font-size:32px; text-transform:uppercase; letter-spacing:-0.01em; }
+    .form-head p { margin-top:8px; font-size:12px; color:var(--ink-3); font-family:'JetBrains Mono',monospace; letter-spacing:0.05em; }
+
+    .form-group { margin-bottom:18px; position:relative; }
     .form-group label {
-      display: block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; letter-spacing: 0.25em; color: var(--ink-3);
-      text-transform: uppercase; margin-bottom: 8px;
+      display:block; font-family:'JetBrains Mono',monospace; font-size:10px;
+      letter-spacing:0.22em; color:var(--ink-3); text-transform:uppercase; margin-bottom:9px;
     }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: var(--bg-3);
-      border: 1px solid var(--line-2);
-      color: var(--ink);
-      font-family: 'Manrope', sans-serif;
-      font-size: 15px;
-      padding: 14px 16px;
-      outline: none;
-      transition: border-color 0.2s;
-      -webkit-appearance: none;
-      appearance: none;
-      border-radius: 0;
+    .form-group input, .form-group select {
+      width:100%; background:rgba(0,0,0,0.25); border:1px solid var(--line-2);
+      color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:15px;
+      padding:15px 16px; outline:none; border-radius:3px;
+      transition: border-color .25s, background .25s, box-shadow .25s;
+      -webkit-appearance:none; appearance:none;
     }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--blood);
+    .form-group input:focus, .form-group select:focus {
+      border-color:var(--blood); background:rgba(0,0,0,0.4);
+      box-shadow: 0 0 0 3px rgba(230,51,0,0.12);
     }
-    .form-group input::placeholder { color: var(--ink-3); }
+    .form-group input::placeholder { color:var(--ink-3); }
     .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236e6a64' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 40px;
-      cursor: pointer;
+      cursor:pointer; padding-right:40px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a961' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-position:right 16px center;
     }
-    .form-group select option { background: #1c1c1c; }
+    .form-group select option { background:#161412; color:var(--ink); }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    @media (max-width:520px){ .form-row{ grid-template-columns:1fr; } }
+    .form-card .btn { width:100%; justify-content:center; margin-top:10px; }
 
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
-
-    .submit-btn {
-      width: 100%;
-      background: var(--blood);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      padding: 18px 32px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-top: 8px;
-      transition: background 0.2s, transform 0.1s;
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-    }
-    .submit-btn:hover { background: var(--blood-2); }
-    .submit-btn:active { transform: scale(0.99); }
-    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .submit-btn .arrow { font-size: 20px; }
-
-    .form-small {
-      margin-top: 16px;
-      font-size: 11px; color: var(--ink-3);
-      font-family: 'JetBrains Mono', monospace;
-      text-align: center;
-      letter-spacing: 0.05em;
-    }
-
-    /* Error / Success states */
-    .form-error {
-      color: var(--blood-2);
-      font-size: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      margin-top: 6px;
-      display: none;
-    }
-    .form-error.show { display: block; }
-
+    .form-error { color:var(--blood-2); font-size:12px; font-family:'JetBrains Mono',monospace; margin-top:6px; display:none; }
+    .form-error.show { display:block; }
     #submit-error {
-      background: rgba(230,51,0,0.1);
-      border: 1px solid var(--blood);
-      padding: 14px 16px;
-      font-size: 13px;
-      color: var(--blood-2);
-      font-family: 'JetBrains Mono', monospace;
-      margin-top: 16px;
-      display: none;
+      background:rgba(230,51,0,0.1); border:1px solid var(--blood); border-radius:3px;
+      padding:13px 16px; font-size:13px; color:var(--blood-2);
+      font-family:'JetBrains Mono',monospace; margin-top:16px; display:none;
     }
-    #submit-error.show { display: block; }
+    #submit-error.show { display:block; }
+    .form-small { margin-top:16px; font-size:11px; color:var(--ink-3); font-family:'JetBrains Mono',monospace; text-align:center; letter-spacing:0.04em; }
+    .spinner { width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:none; }
+    .spinner.show { display:block; }
+    @keyframes spin { to { transform:rotate(360deg); } }
 
-    /* ========== SUCCESS / UNLOCKED STATE ========== */
-    #programme { display: none; }
-    #programme.unlocked { display: block; }
-
+    /* ── UNLOCK BANNER ── */
     #unlock-banner {
-      display: none;
-      background: var(--blood);
-      color: #fff;
-      text-align: center;
-      padding: 16px 32px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      display:none; position:fixed; top:51px; left:0; right:0; z-index:240;
+      background:var(--blood); color:#fff; text-align:center; padding:12px 22px;
+      font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
     }
-    #unlock-banner.show { display: block; }
+    #unlock-banner.show { display:block; animation: rise .5s var(--ease) both; }
 
-    /* ========== PROGRAMME STYLES (unchanged from original) ========== */
-    .hero {
-      min-height: 95vh; padding: 80px 0 60px;
-      display: flex; flex-direction: column; justify-content: center;
-      position: relative; border-bottom: 1px solid var(--line);
-    }
-    .hero-title {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(80px, 16vw, 240px);
-      line-height: 0.85; letter-spacing: -0.02em;
-      color: var(--ink); margin-bottom: 8px; text-transform: uppercase;
-    }
-    .hero-title .accent { color: var(--blood); font-style: italic; -webkit-text-stroke: 0; }
-    .hero-sub {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(40px, 8vw, 120px);
-      line-height: 0.9; color: transparent;
-      -webkit-text-stroke: 1.5px var(--ink-2);
-      letter-spacing: -0.01em; text-transform: uppercase; margin-bottom: 48px;
-    }
-    .hero-meta {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 24px; margin-top: 32px; padding-top: 32px;
-      border-top: 1px solid var(--line); max-width: 1100px;
-    }
-    .brief {
-      margin-top: 64px; max-width: 720px; font-size: 17px;
-      line-height: 1.7; color: var(--ink-2);
-      border-left: 2px solid var(--blood); padding-left: 24px;
-    }
-    .brief strong { color: var(--ink); font-weight: 600; }
-    .scroll-hint {
-      position: absolute; bottom: 24px; right: 32px;
-      font-family: 'JetBrains Mono', monospace; font-size: 10px;
-      letter-spacing: 0.3em; color: var(--ink-3); text-transform: uppercase;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .scroll-hint::after {
-      content: ''; width: 1px; height: 32px;
-      background: linear-gradient(to bottom, var(--ink-3), transparent);
-      animation: scrollDown 1.6s infinite ease-in-out;
-    }
-    @keyframes scrollDown { 0%,100%{transform:scaleY(1);opacity:1;} 50%{transform:scaleY(0.5);opacity:0.3;} }
+    /* ════════ PROGRAMME ════════ */
+    #programme { display:none; }
+    #programme.unlocked { display:block; }
 
-    /* Nutrition */
-    .nutrition-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .span-4 { grid-column: span 4; } .span-6 { grid-column: span 6; } .span-12 { grid-column: span 12; }
-    @media (max-width: 900px) { .nutrition-grid > * { grid-column: span 12 !important; } }
-    .rule-card { background: var(--bg-2); border: 1px solid var(--line); padding: 32px 28px; }
-    .rule-card .num { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:var(--blood); margin-bottom:10px; }
-    .rule-card h3 { font-family:'Oswald',sans-serif; font-weight:600; font-size:20px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px; }
-    .rule-card p { font-size:14px; color:var(--ink-2); line-height:1.7; margin-bottom:8px; }
-    .yes { color:#4ade80; font-weight:600; } .no { color:var(--blood); font-weight:600; }
-    .eat-list, .ban-list { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin-top:4px; list-style:none; }
-    .eat-list li, .ban-list li { font-size:13px; color:var(--ink-2); padding:8px 0 8px 16px; border-bottom:1px solid var(--line); position:relative; }
-    .eat-list li::before { content:'↗'; position:absolute; left:0; color:#4ade80; font-size:11px; }
-    .ban-list li::before { content:'✕'; position:absolute; left:0; color:var(--blood); font-size:11px; }
-    @media (max-width:900px) { .eat-list,.ban-list { grid-template-columns:1fr; } }
+    .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:140px 0 80px; position:relative; }
+    .hero-title { font-family:'Anton',sans-serif; font-size:clamp(72px,15vw,220px); line-height:0.84; text-transform:uppercase; letter-spacing:-0.025em; margin-bottom:10px; }
+    .hero-title .serif-i { color:var(--blood); font-size:0.86em; }
+    .hero-sub { font-family:'Instrument Serif',serif; font-style:italic; font-size:clamp(26px,5vw,64px); color:var(--ink-2); margin-bottom:54px; }
 
-    .timeline { background:var(--bg-2); border:1px solid var(--line); padding:32px 28px; grid-column:span 12; }
-    .timeline-title { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:var(--blood); text-transform:uppercase; margin-bottom:16px; }
-    .timeline-bar { height:80px; background:rgba(230,51,0,0.08); border:1px solid var(--line); position:relative; overflow:hidden; margin-bottom:8px; }
-    .timeline-bar::before { content:''; position:absolute; left:0; top:0; height:100%; width:calc(12/24*100%); background:rgba(230,51,0,0.15); border-right:2px solid var(--blood); }
-    .timeline-bar::after { content:'MEAL 1 — 12:00  |  MEAL 2 — 19:00'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-2); letter-spacing:0.15em; white-space:nowrap; }
-    .timeline-labels { display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--ink-3); margin-bottom:12px; }
-    .timeline-key { display:flex; gap:24px; }
-    .key-item { display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-3); letter-spacing:0.1em; }
-    .key-swatch { width:12px; height:12px; }
-    .key-swatch.fast { background:rgba(230,51,0,0.15); border:1px solid var(--blood); }
-    .key-swatch.feed { background:rgba(201,169,97,0.2); border:1px solid var(--gold); }
+    .stat-strip { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
+    @media (max-width:860px){ .stat-strip{ grid-template-columns:repeat(2,1fr);} }
+    .stat { background:var(--bg-2); padding:26px 22px; }
+    .stat .k { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; margin-bottom:10px; }
+    .stat .v { font-family:'Anton',sans-serif; font-size:22px; text-transform:uppercase; letter-spacing:0.01em; line-height:1.05; }
+    .stat .v.blood { color:var(--blood); } .stat .v.gold { color:var(--gold); }
 
-    /* Training */
-    .training-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-    @media (max-width:900px) { .training-grid { grid-template-columns:1fr; } }
-    .day-card { background:var(--bg-2); border:1px solid var(--line); overflow:hidden; }
-    .day-card.optional { border-style:dashed; }
-    .day-head { padding:28px 28px 20px; display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid var(--line); }
-    .day-head .left .small { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.3em; color:var(--ink-3); text-transform:uppercase; margin-bottom:6px; }
-    .day-head .left h3 { font-family:'Anton',sans-serif; font-size:28px; text-transform:uppercase; letter-spacing:-0.01em; }
-    .day-head .right { text-align:right; }
-    .focus { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; background:rgba(201,169,97,0.1); padding:6px 10px; }
-    .exercise-table { width:100%; border-collapse:collapse; }
-    .exercise-table thead th { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; padding:12px 20px; text-align:left; border-bottom:1px solid var(--line); background:var(--bg-3); }
-    .exercise-table thead th.center,.exercise-table tbody td.center,.ex-sets,.ex-reps,.ex-fail { text-align:center; }
-    .exercise-table tbody tr { border-bottom:1px solid var(--line); transition:background 0.15s; }
-    .exercise-table tbody tr:hover { background:rgba(255,255,255,0.02); }
-    .exercise-table tbody tr:last-child { border-bottom:none; }
-    .exercise-table tbody td { padding:16px 20px; vertical-align:top; }
-    .ex-name { font-weight:600; font-size:14px; margin-bottom:4px; }
+    .brief { margin-top:54px; max-width:760px; font-size:17px; line-height:1.8; color:var(--ink-2); border-left:2px solid var(--blood); padding-left:26px; }
+    .brief strong { color:var(--ink); }
+    .scroll-hint { position:absolute; bottom:28px; right:0; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:var(--ink-3); text-transform:uppercase; display:flex; align-items:center; gap:12px; }
+    .scroll-hint::after { content:''; width:1px; height:34px; background:linear-gradient(var(--ink-3),transparent); animation:sd 1.6s infinite ease-in-out; }
+    @keyframes sd { 0%,100%{transform:scaleY(1);opacity:1;} 50%{transform:scaleY(.5);opacity:.3;} }
+    @media (max-width:720px){ .scroll-hint{ display:none; } }
+
+    /* ── NUTRITION ── */
+    .grid12 { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; }
+    .s4{grid-column:span 4;} .s6{grid-column:span 6;} .s12{grid-column:span 12;}
+    @media (max-width:860px){ .grid12>*{ grid-column:span 12 !important; } }
+    .card { padding:32px 28px; }
+    .card .num { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.28em; color:var(--blood); margin-bottom:14px; }
+    .card h3 { font-family:'Anton',sans-serif; font-size:23px; text-transform:uppercase; letter-spacing:-0.01em; margin-bottom:14px; }
+    .card p { font-size:14px; color:var(--ink-2); line-height:1.75; margin-bottom:8px; }
+    .yes { color:#5fd38a; font-weight:600; } .no { color:var(--blood); font-weight:600; }
+    .lst { list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:2px 18px; margin-top:6px; }
+    @media (max-width:560px){ .lst{ grid-template-columns:1fr; } }
+    .lst li { font-size:13px; color:var(--ink-2); padding:9px 0 9px 18px; border-bottom:1px solid var(--line); position:relative; }
+    .lst.eat li::before { content:'+'; position:absolute; left:0; color:#5fd38a; font-weight:700; }
+    .lst.ban li::before { content:'×'; position:absolute; left:0; color:var(--blood); font-weight:700; }
+
+    .timeline { padding:32px 28px; grid-column:span 12; }
+    .tl-title { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.28em; color:var(--blood); text-transform:uppercase; margin-bottom:18px; }
+    .tl-bar { height:84px; background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:3px; position:relative; overflow:hidden; margin-bottom:10px; }
+    .tl-bar .feed { position:absolute; top:0; bottom:0; left:50%; width:calc(8/24*100%); background:linear-gradient(rgba(201,169,97,0.22),rgba(201,169,97,0.08)); border-left:2px solid var(--gold); border-right:2px solid var(--gold); }
+    .tl-bar::after { content:'MÅLTID 1 — 12:00  ·  MÅLTID 2 — 19:00'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-2); letter-spacing:0.12em; white-space:nowrap; }
+    .tl-labels { display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--ink-3); margin-bottom:14px; }
+    .tl-key { display:flex; gap:26px; flex-wrap:wrap; }
+    .key { display:flex; align-items:center; gap:9px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-3); letter-spacing:0.1em; }
+    .sw { width:12px; height:12px; border-radius:2px; }
+    .sw.fast { background:rgba(255,255,255,0.05); border:1px solid var(--line-2); }
+    .sw.feed { background:rgba(201,169,97,0.25); border:1px solid var(--gold); }
+
+    /* ── TRAINING ── */
+    .roe { padding:34px 30px; margin-bottom:18px; }
+    .roe-tag { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.22em; color:var(--blood); margin-bottom:20px; }
+    .roe-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:26px; }
+    .roe-grid h4 { font-family:'JetBrains Mono',monospace; font-weight:500; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold); margin-bottom:7px; font-size:12px; }
+    .roe-grid p { font-size:14px; color:var(--ink-2); line-height:1.65; }
+
+    .train-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    @media (max-width:860px){ .train-grid{ grid-template-columns:1fr; } }
+    .day { overflow:hidden; }
+    .day.optional { border-style:dashed; }
+    .day-head { padding:28px 28px 22px; display:flex; justify-content:space-between; align-items:flex-start; gap:14px; border-bottom:1px solid var(--line); }
+    .day-head .small { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.28em; color:var(--ink-3); text-transform:uppercase; margin-bottom:8px; }
+    .day-head h3 { font-family:'Anton',sans-serif; font-size:30px; text-transform:uppercase; letter-spacing:-0.01em; }
+    .focus { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; color:var(--gold); text-transform:uppercase; background:rgba(201,169,97,0.1); border:1px solid rgba(201,169,97,0.25); padding:6px 10px; border-radius:2px; white-space:nowrap; }
+    .ex-tbl { width:100%; border-collapse:collapse; }
+    .ex-tbl thead th { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.18em; color:var(--ink-3); text-transform:uppercase; padding:12px 22px; text-align:left; border-bottom:1px solid var(--line); }
+    .ex-tbl th.c, .ex-tbl td.c { text-align:center; }
+    .ex-tbl tbody tr { border-bottom:1px solid var(--line); transition:background .15s; }
+    .ex-tbl tbody tr:hover { background:rgba(255,255,255,0.02); }
+    .ex-tbl tbody tr:last-child { border-bottom:none; }
+    .ex-tbl td { padding:15px 22px; vertical-align:top; }
+    .ex-name { font-weight:600; font-size:14px; margin-bottom:3px; }
     .ex-note { font-size:12px; color:var(--ink-3); }
     .ex-sets { font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--gold); font-size:15px; }
-    .ex-reps { font-family:'Oswald',monospace; font-size:14px; color:var(--ink-2); }
-    .ex-fail { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--blood); font-weight:700; }
-    .day-foot { padding:16px 20px; background:var(--bg-3); border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--ink-3); }
+    .ex-reps { font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--ink-2); }
+    .ex-fail { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; color:var(--blood); font-weight:700; }
+    .day-foot { padding:15px 22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--ink-3); }
+    .day-foot strong { color:var(--ink-2); }
+    @media (max-width:720px){ .day-head{ flex-direction:column; } .ex-tbl th:nth-child(3),.ex-tbl td:nth-child(3){ display:none; } }
 
-    /* Supplements */
-    .supp-table { width:100%; border-collapse:collapse; }
-    .supp-table thead th { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.2em; color:var(--ink-3); text-transform:uppercase; padding:14px 20px; text-align:left; border-bottom:2px solid var(--line-2); background:var(--bg-2); }
-    .supp-table tbody tr { border-bottom:1px solid var(--line); transition:background 0.15s; }
-    .supp-table tbody tr:hover { background:rgba(255,255,255,0.02); }
-    .supp-table tbody td { padding:18px 20px; vertical-align:middle; font-size:14px; color:var(--ink-2); }
-    .supp-name { font-family:'Oswald',sans-serif; font-weight:600; font-size:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.05em; }
+    /* ── SUPPLEMENTS ── */
+    .supp { width:100%; border-collapse:collapse; overflow:hidden; border-radius:4px; }
+    .supp thead th { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.18em; color:var(--ink-3); text-transform:uppercase; padding:16px 22px; text-align:left; border-bottom:1px solid var(--line-2); background:rgba(255,255,255,0.02); }
+    .supp tbody tr { border-bottom:1px solid var(--line); transition:background .15s; }
+    .supp tbody tr:hover { background:rgba(255,255,255,0.02); }
+    .supp td { padding:18px 22px; font-size:14px; color:var(--ink-2); vertical-align:middle; }
+    .supp-name { font-family:'Anton',sans-serif; font-size:18px; color:var(--ink); text-transform:uppercase; letter-spacing:0; }
     .supp-dose { font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:13px; font-weight:700; }
-    .supp-note { margin-top:24px; background:var(--bg-2); border:1px solid var(--line); border-left:3px solid var(--gold); padding:24px 28px; font-size:14px; color:var(--ink-2); line-height:1.7; }
+    @media (max-width:720px){ .supp thead th:nth-child(3),.supp td:nth-child(3){ display:none; } }
+    .supp-note { margin-top:22px; padding:26px 30px; border-left:3px solid var(--gold); font-size:14px; color:var(--ink-2); line-height:1.75; }
+    .supp-note strong { color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; display:block; margin-bottom:10px; }
 
-    /* Rules */
-    .rules-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    @media (max-width:900px) { .rules-grid { grid-template-columns:1fr; } }
-    .commandment { background:var(--bg-2); border:1px solid var(--line); padding:32px 28px; }
-    .commandment .num { font-family:'Anton',sans-serif; font-size:48px; color:var(--blood); line-height:1; margin-bottom:12px; opacity:0.4; }
-    .commandment h4 { font-family:'Oswald',sans-serif; font-weight:600; font-size:16px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
-    .commandment p { font-size:14px; color:var(--ink-2); line-height:1.7; }
+    /* ── RULES ── */
+    .rules { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    @media (max-width:860px){ .rules{ grid-template-columns:1fr; } }
+    .cmd { padding:32px 28px; position:relative; overflow:hidden; }
+    .cmd .n { font-family:'Anton',sans-serif; font-size:56px; color:var(--blood); line-height:1; margin-bottom:14px; opacity:0.3; }
+    .cmd h4 { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+    .cmd p { font-size:14px; color:var(--ink-2); line-height:1.7; }
 
-    /* Weeks */
-    .weeks { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-    @media (max-width:900px) { .weeks { grid-template-columns:repeat(2,1fr); } }
-    .week { background:var(--bg-2); border:1px solid var(--line); padding:28px 24px; position:relative; }
-    .week::before { content:''; position:absolute; top:0; left:0; height:3px; background:var(--blood); width:25%; }
-    .week:nth-child(2)::before { width:50%; }
-    .week:nth-child(3)::before { width:75%; }
-    .week:nth-child(4)::before { width:100%; }
-    .week-num { font-family:'Anton',sans-serif; font-size:64px; line-height:1; color:var(--ink); letter-spacing:-0.02em; }
-    .week-num span { color:var(--blood); }
-    .week-title { font-family:'Oswald',sans-serif; font-weight:500; font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin:8px 0 16px; }
-    .week p { font-size:13px; color:var(--ink-2); line-height:1.6; }
+    /* ── WEEKS ── */
+    .weeks { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    @media (max-width:860px){ .weeks{ grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:480px){ .weeks{ grid-template-columns:1fr; } }
+    .week { padding:30px 26px; position:relative; overflow:hidden; }
+    .week .prog { position:absolute; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--blood),var(--gold)); }
+    .week:nth-child(1) .prog{ width:25%; } .week:nth-child(2) .prog{ width:50%; }
+    .week:nth-child(3) .prog{ width:75%; } .week:nth-child(4) .prog{ width:100%; }
+    .week .wn { font-family:'Anton',sans-serif; font-size:66px; line-height:1; letter-spacing:-0.02em; }
+    .week .wn span { color:var(--blood); }
+    .week .wt { font-family:'JetBrains Mono',monospace; font-weight:500; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:10px 0 16px; }
+    .week p { font-size:13px; color:var(--ink-2); line-height:1.65; }
+    .week p strong { color:var(--ink); }
 
-    /* Final */
-    .final { padding:140px 0 100px; text-align:center; border-bottom:1px solid var(--line); }
-    .final-title { font-family:'Anton',sans-serif; font-size:clamp(60px,12vw,180px); line-height:0.9; text-transform:uppercase; margin-bottom:32px; letter-spacing:-0.02em; }
-    .final-title .accent { color:var(--blood); font-style:italic; }
-    .final-quote { font-family:'Oswald',sans-serif; font-weight:300; font-size:18px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); max-width:600px; margin:0 auto; line-height:1.6; }
+    /* ── FINAL ── */
+    .final { padding:160px 0 120px; text-align:center; }
+    .final h2 { font-family:'Anton',sans-serif; font-size:clamp(56px,12vw,180px); line-height:0.9; text-transform:uppercase; letter-spacing:-0.02em; margin-bottom:34px; }
+    .final h2 .serif-i { color:var(--blood); }
+    .final-q { font-family:'Instrument Serif',serif; font-style:italic; font-size:clamp(20px,3vw,30px); color:var(--ink-3); max-width:620px; margin:0 auto; line-height:1.5; }
 
-    /* Footer */
-    footer { padding:40px 0; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; color:var(--ink-3); text-transform:uppercase; text-align:center; }
-    footer .stamp { display:inline-block; border:2px solid var(--blood); color:var(--blood); padding:12px 24px; margin-bottom:24px; letter-spacing:0.4em; transform:rotate(-2deg); font-weight:700; }
+    /* ── FOOTER ── */
+    footer { padding:60px 0; border-top:1px solid var(--line); text-align:center; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:var(--ink-3); text-transform:uppercase; }
+    footer .stamp { display:inline-block; border:1.5px solid var(--blood); color:var(--blood); padding:12px 26px; margin-bottom:26px; letter-spacing:0.35em; transform:rotate(-2deg); font-weight:700; border-radius:2px; }
+    footer .bdg { margin-top:22px; font-size:11px; letter-spacing:0.18em; }
+    footer .bdg b { color:var(--gold); font-weight:700; }
+    footer .disc { margin-top:18px; font-size:9px; color:var(--ink-3); line-height:1.8; max-width:680px; margin-left:auto; margin-right:auto; }
 
-    /* Animations */
-    .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s ease,transform .8s ease; }
-    .reveal.in { opacity:1; transform:translateY(0); }
-
-    /* Responsive */
-    @media (max-width:900px) {
-      .section { padding:80px 0 60px; }
-      .wrap { padding:0 20px; }
-      .topbar-inner { padding:12px 20px; }
-      .topbar-right { display:none; }
-      .day-head { flex-direction:column; align-items:flex-start; gap:12px; }
-      .day-head .right { text-align:left; }
-      .exercise-table thead th:nth-child(3),
-      .exercise-table tbody td:nth-child(3) { display:none; }
-      .scroll-hint { display:none; }
-      .timeline-bar { height:60px; }
-      .timeline-labels { font-size:8px; }
-      .form-card { padding:32px 24px; }
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce){
+      .mesh, .dot, .marquee-track, .scroll-hint::after { animation:none !important; }
+      * { scroll-behavior:auto !important; }
     }
-
-    /* Loading spinner */
-    .spinner {
-      width: 16px; height: 16px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      display: none;
-    }
-    .spinner.show { display: block; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ========== VIDEO GATE ========== */
-    #video-gate {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 0 100px;
-    }
-    .video-gate-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px; letter-spacing: 0.3em; color: var(--blood);
-      text-transform: uppercase; margin-bottom: 20px;
-    }
-    .video-gate-title {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(48px, 8vw, 100px);
-      line-height: 0.9; text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .video-gate-title .acc { color: var(--blood); font-style: italic; }
-    .video-gate-sub {
-      font-size: 16px; color: var(--ink-2); line-height: 1.7;
-      max-width: 560px; margin-bottom: 48px;
-    }
-    .video-wrap {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      aspect-ratio: 9/16;
-      background: #000;
-      border: 1px solid var(--line-2);
-      margin: 0 auto 40px;
-      overflow: hidden;
-    }
-    @media (min-width: 700px) {
-      .video-wrap {
-        aspect-ratio: 16/9;
-      }
-    }
-    #protocol-video {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    /* Overlay shown while video is not finished */
-    #video-overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.55);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      pointer-events: none;
-      transition: opacity 0.5s;
-    }
-    #video-overlay.hidden { opacity: 0; }
-    .video-overlay-text {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px; letter-spacing: 0.25em;
-      color: #fff; text-transform: uppercase;
-      text-align: center; margin-top: 16px;
-    }
-    #video-progress-bar {
-      position: absolute; bottom: 0; left: 0; height: 3px;
-      background: var(--blood); width: 0%;
-      transition: width 0.5s linear;
-      pointer-events: none;
-    }
-    /* Lock icon */
-    .lock-icon {
-      font-size: 48px; opacity: 0.9;
-    }
-    /* CTA after video ends */
-    #video-cta {
-      display: none;
-      text-align: center;
-      margin-top: 12px;
-    }
-    #video-cta.show { display: block; }
-    #video-cta p {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px; letter-spacing: 0.2em;
-      color: var(--blood); text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .proceed-btn {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: var(--blood); color: #fff; border: none;
-      cursor: pointer; padding: 18px 40px;
-      font-family: 'Oswald', sans-serif; font-size: 18px;
-      font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
-      transition: background 0.2s;
-    }
-    .proceed-btn:hover { background: var(--blood-2); }
   </style>
 </head>
 <body>
 
-<!-- ===== TOP BAR ===== -->
+<div class="mesh"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-label">// Dekrypterer fil 001</div>
+  <div class="pre-count" id="pre-count">0</div>
+  <div class="pre-bar"><i id="pre-bar-fill"></i></div>
+</div>
+
+<!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="topbar-left">
-      <span class="dot"></span>
-      <span>OPERATION // THE SECRET</span>
-    </div>
+    <div class="brand-mark"><span class="dot"></span> OPERATION // THE SECRET <span style="color:var(--ink-3);margin:0 2px;">·</span> <b>builtbyborch</b></div>
     <div class="topbar-right">
       <span>ADGANG: BEGRÆNSET</span>
       <span>FIL 001</span>
@@ -603,125 +497,76 @@
   </div>
 </div>
 
-<!-- ===== UNLOCK BANNER (shown after form submit) ===== -->
-<div id="unlock-banner">
-  ✓ ADGANG GIVET — SCROLL NED OG START DIN PROTOKOL
-</div>
+<!-- UNLOCK BANNER -->
+<div id="unlock-banner">✓ ADGANG GIVET — SCROLL NED OG START DIN PROTOKOL</div>
 
-<!-- ══════════════════════════════════════
-     STEP 1: VIDEO GATE
-══════════════════════════════════════ -->
+<!-- ══════════ STEP 1: VIDEO GATE ══════════ -->
 <div id="video-gate">
   <div class="wrap">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">BUILTBYBORCH</div>
-    <div class="video-gate-label">// TRIN 1 AF 2 — SE VIDEON FØR DU LÅSER OP</div>
-    <h2 class="video-gate-title">SE HVAD<br><span class="acc">PROTOKOLLEN</span> GØR.</h2>
-    <p class="video-gate-sub">Se hele videoen — udfyld derefter formularen og få øjeblikkelig, gratis adgang til det komplette 28-dages program.</p>
+    <div class="vg-top">
+      <span class="vg-brand">builtbyborch</span>
+      <span class="vg-line"></span>
+      <span class="vg-step">// Trin 1 af 2 — se videoen før du låser op</span>
+    </div>
 
-    <div class="video-wrap">
-      <video id="protocol-video" playsinline controls>
-        <source src="video.mp4" type="video/mp4">
-      </video>
-      <div id="video-overlay">
-        <div class="lock-icon">🔒</div>
-        <div class="video-overlay-text">Se videoen for at låse op</div>
+    <h1 class="vg-title" data-reveal>
+      SE HVAD <span class="redact accent"><span>PROTOKOLLEN</span></span><br>
+      <span class="serif-i">gør.</span>
+    </h1>
+    <p class="vg-sub" data-reveal>Se hele videoen — udfyld derefter formularen og få øjeblikkelig, gratis adgang til det komplette 28-dages program.</p>
+
+    <div class="video-shell glass glass-edge" data-reveal>
+      <div class="video-wrap">
+        <video id="protocol-video" playsinline controls preload="metadata">
+          <source src="video.mp4" type="video/mp4">
+        </video>
+        <span class="video-corner tl"></span><span class="video-corner tr"></span>
+        <span class="video-corner bl"></span><span class="video-corner br"></span>
+        <div class="video-rec"><span class="dot"></span> REC · 001</div>
+        <div id="video-overlay">
+          <div class="lock-badge">🔒</div>
+          <div class="overlay-text">Se videoen for at låse op</div>
+        </div>
+        <div id="video-progress"></div>
       </div>
-      <div id="video-progress-bar"></div>
     </div>
 
     <div id="video-cta">
-      <p>✓ VIDEO FÆRDIG — DU ER KLAR</p>
-      <button class="proceed-btn" id="proceed-btn">
-        LÅS PROGRAMMET OP →
-      </button>
+      <div class="done-tag">✓ Video færdig — du er klar</div>
+      <button class="btn" id="proceed-btn"><span>Lås programmet op</span><span class="arrow">→</span></button>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     STEP 2: GATE PAGE (shown after video)
-══════════════════════════════════════ -->
+<!-- ══════════ STEP 2: FORM GATE ══════════ -->
 <div id="gate" style="display:none;">
+  <div class="wrap">
+    <div class="gate-grid">
 
-  <!-- Hero -->
-  <div class="gate-hero wrap">
-    <div class="classified">KLASSIFICERET // KUN FOR DINE ØJNE</div>
-    <h1 class="gate-title">
-      THE <span class="accent">SECRET</span>
-    </h1>
-    <div class="gate-sub">PROTOCOL — 28 DAYS</div>
-
-    <div class="gate-meta">
-      <div class="meta-item">
-        <div class="label">Mål</div>
-        <div class="value blood">Forbrænd fedt. Byg muskler.</div>
-      </div>
-      <div class="meta-item">
-        <div class="label">Metode</div>
-        <div class="value">Træn til failure</div>
-      </div>
-      <div class="meta-item">
-        <div class="label">Kost</div>
-        <div class="value gold">Højt protein / Lavt kulhydrat</div>
-      </div>
-      <div class="meta-item">
-        <div class="label">Frekvens</div>
-        <div class="value">4–5x / Uge</div>
-      </div>
-      <div class="meta-item">
-        <div class="label">Sværhedsgrad</div>
-        <div class="value blood">Brutal</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Form Section -->
-  <div class="gate-form-section wrap">
-    <div class="gate-form-inner">
-
-      <!-- Left: pitch -->
       <div>
-        <div class="gate-pitch-label">// LÅS DIT PROGRAM OP</div>
-        <h2 class="gate-pitch-title">
-          ÉT SKEMA.<br>28 DAGE MED <span class="acc">RESULTATER.</span>
+        <div class="eyebrow gate-eyebrow" data-reveal>// Lås dit program op</div>
+        <h2 class="gate-pitch-title" data-reveal>
+          ÉT SKEMA.<br>28 DAGE MED<br><span class="redact accent"><span>RESULTATER</span></span> <span class="serif-i">.</span>
         </h2>
-        <p class="gate-pitch-body">
-          Dette er ikke en generisk plan. <strong>Dette er den præcise protokol</strong> der bruges til at bygge seriøse kroppe på 4 uger — fuldt træningsprogram, kostplan, supplement-stack og uge-for-uge progression. Udfyld skemaet. Adgang er øjeblikkelig og gratis.
+        <p class="gate-pitch-body" data-reveal>
+          Dette er ikke en generisk plan. <strong>Dette er den præcise protokol</strong> der bruges til at bygge seriøse kroppe på 4 uger — fuldt træningsprogram, kostplan, supplement-stack og uge-for-uge progression. Adgang er øjeblikkelig og gratis.
         </p>
-        <div class="promises">
-          <div class="promise-item">
-            <div class="promise-icon">01</div>
-            <div><strong>Komplet 4-ugers træningsprogram</strong> — 4 træninger om ugen, hver øvelse, hvert sæt, hvert rep-interval.</div>
-          </div>
-          <div class="promise-item">
-            <div class="promise-icon">02</div>
-            <div><strong>Kostprotokol</strong> — præcis hvad du skal spise, hvornår du skal spise, og hvad du aldrig må røre.</div>
-          </div>
-          <div class="promise-item">
-            <div class="promise-icon">03</div>
-            <div><strong>Supplement-stack</strong> — 5 stoffer der faktisk virker, med doser og timing.</div>
-          </div>
-          <div class="promise-item">
-            <div class="promise-icon">04</div>
-            <div><strong>9 udførelsesregler</strong> — de vaner der skiller resultater fra undskyldninger.</div>
-          </div>
-          <div class="promise-item">
-            <div class="promise-icon">05</div>
-            <div><strong>Uge-for-uge nedbrydning</strong> — hvad du kan forvente hver uge, så du ikke giver op.</div>
-          </div>
+        <div class="promises" data-reveal>
+          <div class="promise"><span class="pi">01</span><span><strong>Komplet 4-ugers træningsprogram</strong> — 4 træninger om ugen, hver øvelse, hvert sæt, hvert rep-interval.</span></div>
+          <div class="promise"><span class="pi">02</span><span><strong>Kostprotokol</strong> — præcis hvad du skal spise, hvornår, og hvad du aldrig må røre.</span></div>
+          <div class="promise"><span class="pi">03</span><span><strong>Supplement-stack</strong> — 5 stoffer der faktisk virker, med doser og timing.</span></div>
+          <div class="promise"><span class="pi">04</span><span><strong>9 udførelsesregler</strong> — de vaner der skiller resultater fra undskyldninger.</span></div>
+          <div class="promise"><span class="pi">05</span><span><strong>Uge-for-uge nedbrydning</strong> — hvad du kan forvente hver uge, så du ikke giver op.</span></div>
         </div>
       </div>
 
-      <!-- Right: form -->
-      <div class="form-card">
-        <div class="form-header">
-          <div class="form-header-tag">// SIKKERT ADGANGSFORMULAR</div>
+      <div class="form-card glass glass-edge" data-reveal>
+        <div class="form-head">
+          <div class="tag">// Sikkert adgangsformular</div>
           <h3>Få øjeblikkelig adgang</h3>
           <p>// Udfyld herunder — lås den fulde protokol op</p>
         </div>
-
         <form id="lead-form" novalidate>
-
           <div class="form-row">
             <div class="form-group">
               <label for="fname">Fornavn *</label>
@@ -733,19 +578,16 @@
               <input type="text" id="lname" name="last_name" placeholder="Borch" autocomplete="family-name">
             </div>
           </div>
-
           <div class="form-group">
             <label for="email">Email-adresse *</label>
             <input type="email" id="email" name="email" placeholder="dig@email.com" autocomplete="email">
             <div class="form-error" id="err-email">Indtast en gyldig email</div>
           </div>
-
           <div class="form-group">
             <label for="phone">Telefon / WhatsApp *</label>
             <input type="tel" id="phone" name="phone" placeholder="+45 12 34 56 78" autocomplete="tel">
             <div class="form-error" id="err-phone">Påkrævet</div>
           </div>
-
           <div class="form-group">
             <label for="goal">Dit primære mål *</label>
             <select id="goal" name="goal">
@@ -759,17 +601,12 @@
             </select>
             <div class="form-error" id="err-goal">Vælg venligst et mål</div>
           </div>
-
-          <button type="submit" class="submit-btn" id="submit-btn">
-            <span id="btn-text">LÅS PROGRAMMET OP</span>
+          <button type="submit" class="btn" id="submit-btn">
+            <span id="btn-text">Lås programmet op</span>
             <span class="arrow" id="btn-arrow">→</span>
             <div class="spinner" id="btn-spinner"></div>
           </button>
-
-          <div id="submit-error">
-            Noget gik galt. Prøv igen eller send mig en DM direkte.
-          </div>
-
+          <div id="submit-error">Noget gik galt. Prøv igen eller send mig en DM direkte.</div>
           <p class="form-small">// Ingen spam. Ingen abonnementer. Kun protokollen.</p>
         </form>
       </div>
@@ -777,89 +614,70 @@
     </div>
   </div>
 </div>
-<!-- end #gate -->
 
-
-<!-- ══════════════════════════════════════
-     FULL PROGRAMME (hidden until unlocked)
-══════════════════════════════════════ -->
+<!-- ══════════ FULL PROGRAMME ══════════ -->
 <div id="programme">
 
   <!-- HERO -->
-  <section class="hero wrap reveal in">
-    <div class="classified">KLASSIFICERET // ADGANG GIVET</div>
-    <h1 class="hero-title">
-      THE <span class="accent">SECRET</span>
+  <section class="hero wrap">
+    <div class="eyebrow" data-reveal style="color:var(--gold);">Klassificeret // Adgang givet</div>
+    <h1 class="hero-title" data-reveal style="margin-top:18px;">
+      THE <span class="serif-i">secret</span>
     </h1>
-    <div class="hero-sub">PROTOCOL — 28 DAYS</div>
+    <div class="hero-sub" data-reveal>protokol — 28 dage</div>
 
-    <div class="hero-meta">
-      <div class="meta-item">
-        <div class="label">Mål</div>
-        <div class="value blood">Forbrænd fedt. Byg muskler.</div>
-      </div>
-      <div class="meta-item">
-        <div class="label">Metode</div>
-        <div class="value">Træn til failure</div>
-      </div>
-      <div class="meta-item">
-        <div class="label">Kost</div>
-        <div class="value gold">Højt protein / Lavt kulhydrat</div>
-      </div>
-      <div class="meta-item">
-        <div class="label">Frekvens</div>
-        <div class="value">4–5x / Uge</div>
-      </div>
-      <div class="meta-item">
-        <div class="label">Sværhedsgrad</div>
-        <div class="value blood">Brutal</div>
-      </div>
+    <div class="stat-strip" data-reveal>
+      <div class="stat"><div class="k">Mål</div><div class="v blood">Strip fedt<br>byg muskel</div></div>
+      <div class="stat"><div class="k">Metode</div><div class="v">Træn til<br>failure</div></div>
+      <div class="stat"><div class="k">Kost</div><div class="v gold">Højt protein<br>lavt kulhydrat</div></div>
+      <div class="stat"><div class="k">Frekvens</div><div class="v">4–5x<br>/ uge</div></div>
+      <div class="stat"><div class="k">Sværhedsgrad</div><div class="v blood">Brutal</div></div>
     </div>
 
-    <div class="brief">
+    <div class="brief" data-reveal>
       <strong>Missionsbriefing.</strong> 28 dage. To måltider. Hårde løft. Hvert arbejdssæt taget til sand failure. Ingen fluff, ingen trends, ingen undskyldninger. Du bliver sulten. Du bliver øm. Du hader den første uge. I uge tre vil spejlet lyve over for dine fjender. <strong>Læs hvert ord. Udfør det derefter.</strong>
     </div>
-
-    <div class="scroll-hint">SCROLL FOR AT UDFØRE</div>
+    <div class="scroll-hint">Scroll for at udføre</div>
   </section>
 
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Strip fedt</span><span class="fill">●</span><span>Byg muskel</span><span class="fill">●</span><span>Træn til failure</span><span class="fill">●</span><span>Disciplin er frihed</span><span class="fill">●</span>
+      <span>Strip fedt</span><span class="fill">●</span><span>Byg muskel</span><span class="fill">●</span><span>Træn til failure</span><span class="fill">●</span><span>Disciplin er frihed</span><span class="fill">●</span>
+    </div>
+  </div>
+
   <!-- NUTRITION -->
-  <section class="section wrap reveal">
-    <div class="section-head">
+  <section class="block wrap">
+    <div class="sec-head">
       <div>
-        <div class="section-tag">PROTOKOL 01 // KOST</div>
-        <h2 class="section-title">SPIS SOM ET<br>ROVDYR</h2>
+        <div class="sec-index">PROTOKOL <b>01</b> // KOST</div>
+        <h2 class="sec-title" data-reveal>SPIS SOM ET<br><span class="redact accent"><span>ROVDYR</span></span></h2>
       </div>
-      <div class="section-sub">To måltider. Carnivore-baseret. Designet til mæthed, hormoner og rekomposition.</div>
+      <p class="sec-sub" data-reveal>To måltider. Carnivore-baseret. Designet til mæthed, hormoner og rekomposition.</p>
     </div>
 
-    <div class="nutrition-grid">
-
-      <div class="rule-card span-4">
-        <div class="num">REGEL 01</div>
-        <h3>FAST INDTIL 12:00</h3>
+    <div class="grid12">
+      <div class="card glass s4" data-reveal>
+        <div class="num">REGEL 01</div><h3>FAST INDTIL 12:00</h3>
         <p>Ingen mad før middag. <strong>Tilladt:</strong> vand, danskvand, sukkerfri sodavand, sort kaffe, te, elektrolytter (ingen kalorier).</p>
         <p>Det er den nemme del. Gør det ikke kompliceret.</p>
       </div>
-
-      <div class="rule-card span-4">
-        <div class="num">REGEL 02</div>
-        <h3>TO MÅLTIDER / DAG</h3>
+      <div class="card glass s4" data-reveal>
+        <div class="num">REGEL 02</div><h3>TO MÅLTIDER / DAG</h3>
         <p>Måltid 1: ~12:00. Måltid 2: ~19:00–20:00. Det er det. Ingen snacks. Ingen smagsretter. Ingen "bare lidt".</p>
-        <p>Hvis du er sulten mellem måltiderne — drik vand og hold mund.</p>
+        <p>Er du sulten mellem måltiderne — drik vand og hold mund.</p>
       </div>
-
-      <div class="rule-card span-4">
-        <div class="num">REGEL 03</div>
-        <h3>KØD FØRST. ALTID.</h3>
+      <div class="card glass s4" data-reveal>
+        <div class="num">REGEL 03</div><h3>KØD FØRST. ALTID.</h3>
         <p>Hvert måltid starter med protein. Spis mindst <strong>250–400g tilberedt kød per måltid</strong>. Spis protein til du er mæt, inden noget andet rører tallerkenen.</p>
       </div>
 
-      <div class="rule-card span-6">
-        <div class="num">SPIS DETTE</div>
-        <h3>GRØNT LYS</h3>
-        <p style="margin-bottom:16px;">Hele, uforarbejdede, dense fødevarer. <span class="yes">Spis frit.</span></p>
-        <ul class="eat-list">
+      <div class="card glass s6" data-reveal>
+        <div class="num">SPIS DETTE</div><h3>GRØNT LYS</h3>
+        <p style="margin-bottom:14px;">Hele, uforarbejdede, dense fødevarer. <span class="yes">Spis frit.</span></p>
+        <ul class="lst eat">
           <li>Ribeye, mørbrad, hakket oksekød (80/20)</li>
           <li>Kyllingelår &gt; kyllingebryst</li>
           <li>Æg (hele, med blomme)</li>
@@ -870,16 +688,14 @@
           <li>Vand — minimum 3L / dag</li>
         </ul>
       </div>
-
-      <div class="rule-card span-6">
-        <div class="num">SPIS IKKE DETTE</div>
-        <h3>RØDT LYS</h3>
-        <p style="margin-bottom:16px;">Spiser du dette, har du brudt protokollen. <span class="no">Start dagen forfra.</span></p>
-        <ul class="ban-list">
+      <div class="card glass s6" data-reveal>
+        <div class="num">SPIS IKKE DETTE</div><h3>RØDT LYS</h3>
+        <p style="margin-bottom:14px;">Spiser du dette, har du brudt protokollen. <span class="no">Start dagen forfra.</span></p>
+        <ul class="lst ban">
           <li>Brød, ris, pasta, havre, alle korn</li>
           <li>Sukker i enhver form (inkl. honning, agave)</li>
           <li>Frøolier (raps, solsikke, soja)</li>
-          <li>Svinekød, fisk, lam (denne runde — hold det stramt)</li>
+          <li>Svinekød, fisk, lam (denne runde)</li>
           <li>Alkohol — nul, alle 28 dage</li>
           <li>Frugtjuice, smoothies, havremælk</li>
           <li>Alt mærket "fedtfattigt" eller "light"</li>
@@ -887,332 +703,375 @@
         </ul>
       </div>
 
-      <div class="timeline">
-        <div class="timeline-title">// 24-TIMERS SPISEVINDUE</div>
-        <div class="timeline-bar"></div>
-        <div class="timeline-labels">
-          <span>00</span><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span>
-          <span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span>
-          <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
-          <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+      <div class="timeline glass" data-reveal>
+        <div class="tl-title">// 24-timers spisevindue</div>
+        <div class="tl-bar"><span class="feed"></span></div>
+        <div class="tl-labels">
+          <span>00</span><span>02</span><span>04</span><span>06</span><span>08</span><span>10</span>
+          <span>12</span><span>14</span><span>16</span><span>18</span><span>20</span><span>22</span>
         </div>
-        <div class="timeline-key">
-          <div class="key-item"><div class="key-swatch fast"></div>FASTE</div>
-          <div class="key-item"><div class="key-swatch feed"></div>SPISEVINDUE (12:00 &amp; 19:00)</div>
+        <div class="tl-key">
+          <div class="key"><span class="sw fast"></span> Faste</div>
+          <div class="key"><span class="sw feed"></span> Spisevindue (12:00 &amp; 19:00)</div>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- TRAINING -->
-  <section class="section wrap reveal">
-    <div class="section-head">
+  <section class="block wrap">
+    <div class="sec-head">
       <div>
-        <div class="section-tag">PROTOKOL 02 // TRÆNING</div>
-        <h2 class="section-title">TRÆN TIL<br>FAILURE</h2>
+        <div class="sec-index">PROTOKOL <b>02</b> // TRÆNING</div>
+        <h2 class="sec-title" data-reveal>TRÆN TIL<br><span class="redact accent"><span>FAILURE</span></span></h2>
       </div>
-      <div class="section-sub">4 helkrops-dage. Compound løft. Hvert arbejdssæt til sand muskelfailure.</div>
+      <p class="sec-sub" data-reveal>4 helkrops-dage. Compound løft. Hvert arbejdssæt til sand muskelfailure.</p>
     </div>
 
-    <div style="background:var(--bg-2);border:1px solid var(--line);padding:32px;margin-bottom:32px;">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--blood);margin-bottom:16px;">// TRÆNINGSREGLER</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
-        <div>
-          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Opvarmning</div>
-          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">2 stigende sæt per første compound-øvelse. Arbejd op til arbejdsvægt. Opvarmning er IKKE til failure.</div>
-        </div>
-        <div>
-          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Arbejdssæt</div>
-          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">Sidste sæt i hver øvelse = absolut failure. Stangen kan ikke flyttes. Ingen undtagelser.</div>
-        </div>
-        <div>
-          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Pausetider</div>
-          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">2–3 min mellem compound-sæt. 60–90s på isolation. Tag tid. Scroll ikke.</div>
-        </div>
-        <div>
-          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Progression</div>
-          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">Slå forrige uges log. Tilføj 2,5 kg ELLER 1 rep på failure-sættet. Track alt i en notesbog.</div>
-        </div>
-        <div>
-          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Teknik</div>
-          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">Fuldt bevægeudslag. Kontrolleret excentrisk (2–3s ned). Ingen bounce. Ingen ego. Failure med dårlig teknik tæller ikke.</div>
-        </div>
-        <div>
-          <div style="font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-size:13px;">Cardio</div>
-          <div style="font-size:14px;color:var(--ink-2);line-height:1.6;">10.000 skridt dagligt. Det er det. Ingen HIIT, ingen løb. Gå. Restitution er hellig.</div>
-        </div>
+    <div class="roe glass" data-reveal>
+      <div class="roe-tag">// Træningsregler</div>
+      <div class="roe-grid">
+        <div><h4>Opvarmning</h4><p>2 stigende sæt per første compound-øvelse. Arbejd op til arbejdsvægt. Opvarmning er IKKE til failure.</p></div>
+        <div><h4>Arbejdssæt</h4><p>Sidste sæt i hver øvelse = absolut failure. Stangen kan ikke flyttes. Ingen undtagelser.</p></div>
+        <div><h4>Pausetider</h4><p>2–3 min mellem compound-sæt. 60–90s på isolation. Tag tid. Scroll ikke.</p></div>
+        <div><h4>Progression</h4><p>Slå forrige uges log. Tilføj 2,5 kg ELLER 1 rep på failure-sættet. Track alt.</p></div>
+        <div><h4>Teknik</h4><p>Fuldt bevægeudslag. Kontrolleret excentrisk (2–3s ned). Ingen bounce. Ingen ego.</p></div>
+        <div><h4>Cardio</h4><p>10.000 skridt dagligt. Ingen HIIT, ingen løb. Gå. Restitution er hellig.</p></div>
       </div>
     </div>
 
-    <div class="training-grid">
-
-      <!-- MONDAY -->
-      <div class="day-card">
-        <div class="day-head">
-          <div class="left">
-            <div class="small">DAG 01 // MANDAG</div>
-            <h3>HELKROP A</h3>
-          </div>
-          <div class="right"><span class="focus">SQUAT &amp; PRES</span></div>
-        </div>
-        <table class="exercise-table">
-          <thead><tr><th>Øvelse</th><th class="center">Sæt</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+    <div class="train-grid">
+      <div class="day glass" data-reveal>
+        <div class="day-head"><div><div class="small">DAG 01 // MANDAG</div><h3>HELKROP A</h3></div><span class="focus">SQUAT &amp; PRES</span></div>
+        <table class="ex-tbl">
+          <thead><tr><th>Øvelse</th><th class="c">Sæt</th><th class="c">Reps</th><th class="c">Failure</th></tr></thead>
           <tbody>
-            <tr><td><div class="ex-name">Squat</div><div class="ex-note">Tungt. Bælte + kalk OK.</div></td><td class="ex-sets">3</td><td class="ex-reps">6–8</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Bænkpres</div><div class="ex-note">Pause 1s på brystet.</div></td><td class="ex-sets">3</td><td class="ex-reps">6–8</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Pull-ups (eller Lat Pulldown)</div><div class="ex-note">Kropsvægt + vægt hvis &gt;10 reps.</div></td><td class="ex-sets">3</td><td class="ex-reps">AMRAP</td><td class="ex-fail">HVERT SÆT</td></tr>
-            <tr><td><div class="ex-name">Skulderpres (stang)</div><div class="ex-note">Strikt. Ingen benhjælp.</div></td><td class="ex-sets">2</td><td class="ex-reps">8–10</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Stangroning</div><div class="ex-note">Pendlay-stil. Reset pr. rep.</div></td><td class="ex-sets">2</td><td class="ex-reps">8–10</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Hængende benløft</div><div class="ex-note">Langsom excentrisk.</div></td><td class="ex-sets">2</td><td class="ex-reps">AMRAP</td><td class="ex-fail">HVERT SÆT</td></tr>
+            <tr><td><div class="ex-name">Squat</div><div class="ex-note">Tungt. Bælte + kalk OK.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">6–8</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Bænkpres</div><div class="ex-note">Pause 1s på brystet.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">6–8</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Pull-ups (eller Lat Pulldown)</div><div class="ex-note">Kropsvægt + vægt hvis &gt;10 reps.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">AMRAP</td><td class="c ex-fail">HVERT</td></tr>
+            <tr><td><div class="ex-name">Skulderpres (stang)</div><div class="ex-note">Strikt. Ingen benhjælp.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">8–10</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Stangroning</div><div class="ex-note">Pendlay-stil. Reset pr. rep.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">8–10</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Hængende benløft</div><div class="ex-note">Langsom excentrisk.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">AMRAP</td><td class="c ex-fail">HVERT</td></tr>
           </tbody>
         </table>
         <div class="day-foot"><span><strong>EST. TID</strong> · 60–75 MIN</span><span><strong>FOKUS</strong> · BRYST / QUAD / RYG / SKULDRE</span></div>
       </div>
 
-      <!-- WEDNESDAY -->
-      <div class="day-card">
-        <div class="day-head">
-          <div class="left">
-            <div class="small">DAG 02 // ONSDAG</div>
-            <h3>HELKROP B</h3>
-          </div>
-          <div class="right"><span class="focus">HINGE &amp; TRÆK</span></div>
-        </div>
-        <table class="exercise-table">
-          <thead><tr><th>Øvelse</th><th class="center">Sæt</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+      <div class="day glass" data-reveal>
+        <div class="day-head"><div><div class="small">DAG 02 // ONSDAG</div><h3>HELKROP B</h3></div><span class="focus">HINGE &amp; TRÆK</span></div>
+        <table class="ex-tbl">
+          <thead><tr><th>Øvelse</th><th class="c">Sæt</th><th class="c">Reps</th><th class="c">Failure</th></tr></thead>
           <tbody>
-            <tr><td><div class="ex-name">Rumænsk dødløft</div><div class="ex-note">Hasestretch. Stangen tæt på kroppen.</div></td><td class="ex-sets">3</td><td class="ex-reps">6–8</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Skrå bænkpres (håndvægte)</div><div class="ex-note">30° bænk. Stræk brystet.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Chin-ups</div><div class="ex-note">Underhåndsgreb. Hagen over stangen.</div></td><td class="ex-sets">3</td><td class="ex-reps">AMRAP</td><td class="ex-fail">HVERT SÆT</td></tr>
-            <tr><td><div class="ex-name">Bulgarske split-squats</div><div class="ex-note">Håndvægte. Forfoden udfører arbejdet.</div></td><td class="ex-sets">2</td><td class="ex-reps">8–10 / ben</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Håndvægtscurl</div><div class="ex-note">Ingen sving. Klem i toppen.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Skullcrushers</div><div class="ex-note">EZ-stang. Fastholdte albuer.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Rumænsk dødløft</div><div class="ex-note">Hasestretch. Stangen tæt på kroppen.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">6–8</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Skrå bænkpres (håndvægte)</div><div class="ex-note">30° bænk. Stræk brystet.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">8–10</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Chin-ups</div><div class="ex-note">Underhåndsgreb. Hagen over stangen.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">AMRAP</td><td class="c ex-fail">HVERT</td></tr>
+            <tr><td><div class="ex-name">Bulgarske split-squats</div><div class="ex-note">Håndvægte. Forfoden arbejder.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">8–10/ben</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Håndvægtscurl</div><div class="ex-note">Ingen sving. Klem i toppen.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">10–12</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Skullcrushers</div><div class="ex-note">EZ-stang. Fastholdte albuer.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">10–12</td><td class="c ex-fail">SIDSTE</td></tr>
           </tbody>
         </table>
         <div class="day-foot"><span><strong>EST. TID</strong> · 60–75 MIN</span><span><strong>FOKUS</strong> · BAGSIDEN / RYG / ARME</span></div>
       </div>
 
-      <!-- FRIDAY -->
-      <div class="day-card">
-        <div class="day-head">
-          <div class="left">
-            <div class="small">DAG 03 // FREDAG</div>
-            <h3>HELKROP C</h3>
-          </div>
-          <div class="right"><span class="focus">QUAD &amp; VERTIKAL</span></div>
-        </div>
-        <table class="exercise-table">
-          <thead><tr><th>Øvelse</th><th class="center">Sæt</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+      <div class="day glass" data-reveal>
+        <div class="day-head"><div><div class="small">DAG 03 // FREDAG</div><h3>HELKROP C</h3></div><span class="focus">QUAD &amp; VERTIKAL</span></div>
+        <table class="ex-tbl">
+          <thead><tr><th>Øvelse</th><th class="c">Sæt</th><th class="c">Reps</th><th class="c">Failure</th></tr></thead>
           <tbody>
-            <tr><td><div class="ex-name">Front squat (eller benpres)</div><div class="ex-note">Opret overkrop. Quaderne brænder.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Dips (med vægt hvis muligt)</div><div class="ex-note">Foroverbøjet = bryst. Opret = triceps.</div></td><td class="ex-sets">3</td><td class="ex-reps">AMRAP</td><td class="ex-fail">HVERT SÆT</td></tr>
-            <tr><td><div class="ex-name">T-bar roning (eller bryst-støttet)</div><div class="ex-note">Klem i lats. Riv ikke.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Siddende skulderpres (håndvægte)</div><div class="ex-note">Fuld lockout. Stræk i bunden.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Liggende benbojer</div><div class="ex-note">Pause og klem i toppen af hvert rep.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Stående lægøvelse</div><div class="ex-note">Langsom excentrisk. Hold stræk.</div></td><td class="ex-sets">3</td><td class="ex-reps">12–15</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Front squat (eller benpres)</div><div class="ex-note">Opret overkrop. Quaderne brænder.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">8–10</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Dips (med vægt hvis muligt)</div><div class="ex-note">Foroverbøjet = bryst. Opret = triceps.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">AMRAP</td><td class="c ex-fail">HVERT</td></tr>
+            <tr><td><div class="ex-name">T-bar roning</div><div class="ex-note">Klem i lats. Riv ikke.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">8–10</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Siddende skulderpres (håndvægte)</div><div class="ex-note">Fuld lockout. Stræk i bunden.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">10–12</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Liggende benbøjer</div><div class="ex-note">Pause og klem i toppen af hvert rep.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">10–12</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Stående lægøvelse</div><div class="ex-note">Langsom excentrisk. Hold stræk.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">12–15</td><td class="c ex-fail">SIDSTE</td></tr>
           </tbody>
         </table>
         <div class="day-foot"><span><strong>EST. TID</strong> · 60–75 MIN</span><span><strong>FOKUS</strong> · QUAD / SKULDRE / RYG / LÆGGE</span></div>
       </div>
 
-      <!-- SATURDAY (OPTIONAL) -->
-      <div class="day-card optional">
-        <div class="day-head">
-          <div class="left">
-            <div class="small">DAG 04 // LØRDAG (VALGFRI 5. DAG)</div>
-            <h3>ARME &amp; SVAGE PUNKTER</h3>
-          </div>
-          <div class="right"><span class="focus">PUMP &amp; FINISH</span></div>
-        </div>
-        <table class="exercise-table">
-          <thead><tr><th>Øvelse</th><th class="center">Sæt</th><th class="center">Reps</th><th class="center">Failure</th></tr></thead>
+      <div class="day glass optional" data-reveal>
+        <div class="day-head"><div><div class="small">DAG 04 // LØRDAG (VALGFRI 5.)</div><h3>ARME &amp; SVAGE PUNKTER</h3></div><span class="focus">PUMP &amp; FINISH</span></div>
+        <table class="ex-tbl">
+          <thead><tr><th>Øvelse</th><th class="c">Sæt</th><th class="c">Reps</th><th class="c">Failure</th></tr></thead>
           <tbody>
-            <tr><td><div class="ex-name">Smalt bænkpres</div><div class="ex-note">Hænder skulderbredde. Triceps fører.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Stangcurl</div><div class="ex-note">Strikt. Ingen hoftehjælp.</div></td><td class="ex-sets">3</td><td class="ex-reps">8–10</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Kabelsoning (bredt greb)</div><div class="ex-note">Midterste ryg. Træk til brystet.</div></td><td class="ex-sets">3</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Lateral raises</div><div class="ex-note">Lillefinger opad. 3D-skuldre.</div></td><td class="ex-sets">3</td><td class="ex-reps">12–15</td><td class="ex-fail">HVERT SÆT</td></tr>
-            <tr><td><div class="ex-name">Hammer curl</div><div class="ex-note">Brachialis. Tykkere arme.</div></td><td class="ex-sets">2</td><td class="ex-reps">10–12</td><td class="ex-fail">SIDSTE SÆT</td></tr>
-            <tr><td><div class="ex-name">Triceps pushdown (reb)</div><div class="ex-note">Split reb ved lockout. Klem hårdt.</div></td><td class="ex-sets">2</td><td class="ex-reps">12–15</td><td class="ex-fail">SIDSTE SÆT</td></tr>
+            <tr><td><div class="ex-name">Smalt bænkpres</div><div class="ex-note">Hænder skulderbredde. Triceps fører.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">8–10</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Stangcurl</div><div class="ex-note">Strikt. Ingen hoftehjælp.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">8–10</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Kabelroning (bredt greb)</div><div class="ex-note">Midterste ryg. Træk til brystet.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">10–12</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Lateral raises</div><div class="ex-note">Lillefinger opad. 3D-skuldre.</div></td><td class="c ex-sets">3</td><td class="c ex-reps">12–15</td><td class="c ex-fail">HVERT</td></tr>
+            <tr><td><div class="ex-name">Hammer curl</div><div class="ex-note">Brachialis. Tykkere arme.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">10–12</td><td class="c ex-fail">SIDSTE</td></tr>
+            <tr><td><div class="ex-name">Triceps pushdown (reb)</div><div class="ex-note">Split reb ved lockout. Klem hårdt.</div></td><td class="c ex-sets">2</td><td class="c ex-reps">12–15</td><td class="c ex-fail">SIDSTE</td></tr>
           </tbody>
         </table>
-        <div class="day-foot"><span><strong>EST. TID</strong> · 50–60 MIN</span><span><strong>SPRING OVER HVIS</strong> · UNDERRESTITUERET ELLER &lt;7T SØVN</span></div>
+        <div class="day-foot"><span><strong>EST. TID</strong> · 50–60 MIN</span><span><strong>SPRING OVER HVIS</strong> · &lt;7T SØVN</span></div>
       </div>
-
     </div>
   </section>
 
   <!-- SUPPLEMENTS -->
-  <section class="section wrap reveal">
-    <div class="section-head">
+  <section class="block wrap">
+    <div class="sec-head">
       <div>
-        <div class="section-tag">PROTOKOL 03 // STACK</div>
-        <h2 class="section-title">SUPPLEMENT<br>STACK</h2>
+        <div class="sec-index">PROTOKOL <b>03</b> // STACK</div>
+        <h2 class="sec-title" data-reveal>SUPPLEMENT<br><span class="redact accent"><span>STACK</span></span></h2>
       </div>
-      <div class="section-sub">Minimalt. Effektivt. Ingen "mirakelpulvere" eller pre-workout sukkerbooster.</div>
+      <p class="sec-sub" data-reveal>Minimalt. Effektivt. Ingen "mirakelpulvere" eller pre-workout sukkerbomber.</p>
     </div>
 
-    <table class="supp-table">
-      <thead>
-        <tr><th>Stof</th><th>Dosis</th><th>Timing</th><th>Hvorfor</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><div class="supp-name">Tongkat Ali</div></td><td><span class="supp-dose">400–600 mg</span></td><td>Morgen, tom mave</td><td>Frit testosteron og libido. Humør og drive.</td></tr>
-        <tr><td><div class="supp-name">Fiskeolie (EPA/DHA)</div></td><td><span class="supp-dose">2–3 g kombineret</span></td><td>Med måltid 1</td><td>Ledsundhed, antiinflammatorisk, hjerne.</td></tr>
-        <tr><td><div class="supp-name">L-Carnitin Tartrat</div></td><td><span class="supp-dose">2–3 g</span></td><td>30 min pre-workout</td><td>Fedtforbrænding. Pump. Restitution.</td></tr>
-        <tr><td><div class="supp-name">Kreatin Monohydrat</div></td><td><span class="supp-dose">5 g</span></td><td>Dagligt, på ethvert tidspunkt</td><td>Styrke. Cellevolumen. Ikke til forhandling.</td></tr>
-        <tr><td><div class="supp-name">Elektrolytter</div></td><td><span class="supp-dose">1 portion</span></td><td>I fastetimerne</td><td>Natrium, kalium, magnesium. Forsikring mod hovedpine og kramper.</td></tr>
-      </tbody>
-    </table>
+    <div class="glass" data-reveal style="overflow:hidden;">
+      <table class="supp">
+        <thead><tr><th>Stof</th><th>Dosis</th><th>Timing</th><th>Hvorfor</th></tr></thead>
+        <tbody>
+          <tr><td><span class="supp-name">Tongkat Ali</span></td><td><span class="supp-dose">400–600 mg</span></td><td>Morgen, tom mave</td><td>Frit testosteron og libido. Humør og drive.</td></tr>
+          <tr><td><span class="supp-name">Fiskeolie (EPA/DHA)</span></td><td><span class="supp-dose">2–3 g</span></td><td>Med måltid 1</td><td>Ledsundhed, antiinflammatorisk, hjerne.</td></tr>
+          <tr><td><span class="supp-name">L-Carnitin Tartrat</span></td><td><span class="supp-dose">2–3 g</span></td><td>30 min pre-workout</td><td>Fedtforbrænding. Pump. Restitution.</td></tr>
+          <tr><td><span class="supp-name">Kreatin Monohydrat</span></td><td><span class="supp-dose">5 g</span></td><td>Dagligt</td><td>Styrke. Cellevolumen. Ikke til forhandling.</td></tr>
+          <tr><td><span class="supp-name">Elektrolytter</span></td><td><span class="supp-dose">1 portion</span></td><td>I fastetimerne</td><td>Natrium, kalium, magnesium. Mod hovedpine og kramper.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="supp-note">
-      <strong>// CYKELPROTOKOL</strong>
-      Kør kreatin i alle 4 uger. Når du ser reel vækst (uge 4–5), drop kreatin og kør en streng <strong>3–4 ugers ren carnivore-fase</strong> (kød + salt + vand — intet andet). Dette re-sensitiserer kroppen og låser den magre fysik fast. Genintroducer kreatin bagefter.
+    <div class="supp-note glass" data-reveal>
+      <strong>// Cykelprotokol</strong>
+      Kør kreatin i alle 4 uger. Når du ser reel vækst (uge 4–5), drop kreatin og kør en streng <b style="color:var(--ink)">3–4 ugers ren carnivore-fase</b> (kød + salt + vand — intet andet). Dette re-sensitiserer kroppen og låser den magre fysik fast. Genintroducer kreatin bagefter.
     </div>
   </section>
 
   <!-- EXECUTION RULES -->
-  <section class="section wrap reveal">
-    <div class="section-head">
+  <section class="block wrap">
+    <div class="sec-head">
       <div>
-        <div class="section-tag">PROTOKOL 04 // DOKTRIN</div>
-        <h2 class="section-title">REGLER FOR<br>UDFØRELSE</h2>
+        <div class="sec-index">PROTOKOL <b>04</b> // DOKTRIN</div>
+        <h2 class="sec-title" data-reveal>REGLER FOR<br><span class="redact accent"><span>UDFØRELSE</span></span></h2>
       </div>
-      <div class="section-sub">Bryd én af disse og du har brudt protokollen. Start dagen forfra.</div>
+      <p class="sec-sub" data-reveal>Bryd én af disse og du har brudt protokollen. Start dagen forfra.</p>
     </div>
 
-    <div class="rules-grid">
-      <div class="commandment"><div class="num">01</div><h4>SØVN ER LØFTET</h4><p>7–9 timer, hver nat. Telefon ude af soveværelset. Koldt, mørkt rum. Sover du 5 timer, trænede du ikke — du ødelagde væv du ikke kan reparere.</p></div>
-      <div class="commandment"><div class="num">02</div><h4>FAILURE ELLER FIFLET</h4><p>Bevæger det sidste rep sig glat, failede du ikke. Failure betyder stangen stopper midt i et rep med fuld indsats. Ingen snyd, ingen "jeg havde et mere i mig."</p></div>
-      <div class="commandment"><div class="num">03</div><h4>TRACK HVERT REP</h4><p>Notesbog eller notes-app. Dato, øvelse, vægt, reps. Tracker du ikke, gætter du. Gæt bygger ikke muskler.</p></div>
-      <div class="commandment"><div class="num">04</div><h4>VEJ DIG DAGLIGT</h4><p>Samme tidspunkt. Samme betingelser. Lige efter badeværelset, før vand. Track 7-dages gennemsnittet — det er det rigtige tal. Daglige udsving er støj.</p></div>
-      <div class="commandment"><div class="num">05</div><h4>FOTO UGENTLIGT</h4><p>Forfra, siden, bagfra. Samme lys, samme tid på dagen. Spejlet lyver. Vægten lyver. Fotos gør ikke.</p></div>
-      <div class="commandment"><div class="num">06</div><h4>INGEN ALKOHOL. NUL.</h4><p>Én øl ødelægger 36 timers restitution og sænker testosteron. 28 dage. Du overlever. Kan du ikke, er programmet ikke dit problem.</p></div>
-      <div class="commandment"><div class="num">07</div><h4>GÅ 10.000 SKRIDT</h4><p>Dagligt. Ikke til forhandling. Det bedste fedtforbrændingsværktøj der nogensinde er opfundet. Belaster ikke restitution. Koster intet. Ingen undskyldninger.</p></div>
-      <div class="commandment"><div class="num">08</div><h4>SULT ≠ NØDSITUATION</h4><p>Sult er data. Ikke en ordre. Drik vand, salt din tunge, kom tilbage til arbejdet. De første 5 dage er de hårdeste. Derefter tilpasser kroppen sig.</p></div>
-      <div class="commandment"><div class="num">09</div><h4>MØD OP GRIM</h4><p>Træt? Træn. Stiv? Træn. Dårlig dag på arbejdet? Træn hårdere. Den session du ikke vil lave er den der bygger dig. Disciplin &gt; motivation. Altid.</p></div>
+    <div class="rules">
+      <div class="cmd glass" data-reveal><div class="n">01</div><h4>Søvn er løftet</h4><p>7–9 timer, hver nat. Telefon ude af soveværelset. Koldt, mørkt rum. Sover du 5 timer, trænede du ikke — du ødelagde væv du ikke kan reparere.</p></div>
+      <div class="cmd glass" data-reveal><div class="n">02</div><h4>Failure eller fiflet</h4><p>Bevæger det sidste rep sig glat, failede du ikke. Failure = stangen stopper midt i et rep med fuld indsats. Ingen "jeg havde et mere i mig".</p></div>
+      <div class="cmd glass" data-reveal><div class="n">03</div><h4>Track hvert rep</h4><p>Notesbog eller app. Dato, øvelse, vægt, reps. Tracker du ikke, gætter du. Gæt bygger ikke muskler.</p></div>
+      <div class="cmd glass" data-reveal><div class="n">04</div><h4>Vej dig dagligt</h4><p>Samme tid. Samme betingelser. Lige efter badeværelset, før vand. Track 7-dages gennemsnittet — det er det rigtige tal. Daglige udsving er støj.</p></div>
+      <div class="cmd glass" data-reveal><div class="n">05</div><h4>Foto ugentligt</h4><p>Forfra, siden, bagfra. Samme lys, samme tid på dagen. Spejlet lyver. Vægten lyver. Fotos gør ikke.</p></div>
+      <div class="cmd glass" data-reveal><div class="n">06</div><h4>Ingen alkohol. Nul.</h4><p>Én øl ødelægger 36 timers restitution og sænker testosteron. 28 dage. Du overlever. Kan du ikke, er programmet ikke dit problem.</p></div>
+      <div class="cmd glass" data-reveal><div class="n">07</div><h4>Gå 10.000 skridt</h4><p>Dagligt. Ikke til forhandling. Det bedste fedtforbrændingsværktøj nogensinde. Belaster ikke restitution. Koster intet.</p></div>
+      <div class="cmd glass" data-reveal><div class="n">08</div><h4>Sult ≠ nødsituation</h4><p>Sult er data. Ikke en ordre. Drik vand, salt din tunge, kom tilbage til arbejdet. De første 5 dage er de hårdeste. Derefter tilpasser kroppen sig.</p></div>
+      <div class="cmd glass" data-reveal><div class="n">09</div><h4>Mød op grim</h4><p>Træt? Træn. Stiv? Træn. Dårlig dag? Træn hårdere. Den session du ikke vil lave er den der bygger dig. Disciplin &gt; motivation. Altid.</p></div>
     </div>
   </section>
 
-  <!-- WEEK PROGRESSION -->
-  <section class="section wrap reveal">
-    <div class="section-head">
+  <!-- WEEKS -->
+  <section class="block wrap">
+    <div class="sec-head">
       <div>
-        <div class="section-tag">PROTOKOL 05 // TIDSLINJE</div>
-        <h2 class="section-title">28-DAGES<br>PROGRESSION</h2>
+        <div class="sec-index">PROTOKOL <b>05</b> // TIDSLINJE</div>
+        <h2 class="sec-title" data-reveal>28-DAGES<br><span class="redact accent"><span>PROGRESSION</span></span></h2>
       </div>
-      <div class="section-sub">Hvad du kan forvente. Hvad der er normalt. Hvad du skal presse dig igennem.</div>
+      <p class="sec-sub" data-reveal>Hvad du kan forvente. Hvad der er normalt. Hvad du skal presse dig igennem.</p>
     </div>
 
     <div class="weeks">
-      <div class="week"><div class="week-num">0<span>1</span></div><div class="week-title">// UDRENSNINGEN</div><p>Brutal. Sukkertørst. Dårlig søvn. Hjernetåge. Du vil hade mig, hade maden, hade træningscentret. Pres igennem. <strong style="color:var(--ink);">Giv ikke op.</strong> Dag 4–5 er det værste.</p></div>
-      <div class="week"><div class="week-num">0<span>2</span></div><div class="week-title">// SKIFTET</div><p>Energien vender tilbage. Sulten falder markant. Løftene føles skarpe igen. Taljen synligt strammere. Det er her troen starter. Tilføj vægt til arbejdssættene.</p></div>
-      <div class="week"><div class="week-num">0<span>3</span></div><div class="week-title">// LÅSNINGEN</div><p>Synlige muskler. Årer på armene. Skjorter sidder anderledes. Folk kommenterer. Bliv disciplineret — her slapper de fleste af og ødelægger det.</p></div>
-      <div class="week"><div class="week-num">0<span>4</span></div><div class="week-title">// BEVISET</div><p>Det strammeste du har set ud i årevis. Styrken op på alle løft. Selvtillid bygget fra <em>at gøre det</em>, ikke tale om det. Nu beslutter du om du fortsætter.</p></div>
+      <div class="week glass" data-reveal><span class="prog"></span><div class="wn">0<span>1</span></div><div class="wt">// Udrensningen</div><p>Brutal. Sukkertørst. Dårlig søvn. Hjernetåge. Du vil hade mig, maden, centret. Pres igennem. <strong>Giv ikke op.</strong> Dag 4–5 er værst.</p></div>
+      <div class="week glass" data-reveal><span class="prog"></span><div class="wn">0<span>2</span></div><div class="wt">// Skiftet</div><p>Energien vender tilbage. Sulten falder markant. Løftene føles skarpe igen. Taljen synligt strammere. Det er her troen starter.</p></div>
+      <div class="week glass" data-reveal><span class="prog"></span><div class="wn">0<span>3</span></div><div class="wt">// Låsningen</div><p>Synlige muskler. Årer på armene. Skjorter sidder anderledes. Folk kommenterer. Bliv disciplineret — her ødelægger de fleste det.</p></div>
+      <div class="week glass" data-reveal><span class="prog"></span><div class="wn">0<span>4</span></div><div class="wt">// Beviset</div><p>Det strammeste du har set ud i årevis. Styrken op på alle løft. Selvtillid bygget fra <em>at gøre det</em>. Nu beslutter du om du fortsætter.</p></div>
     </div>
   </section>
 
   <!-- FINAL -->
-  <section class="final wrap reveal">
-    <h2 class="final-title">UDFØR DET.<br><span class="accent">FORHANDL IKKE.</span></h2>
-    <p class="final-quote">"Disciplin er frihed.<br>Komfort er forfald."</p>
+  <section class="final wrap">
+    <h2 data-reveal>UDFØR DET.<br><span class="serif-i">forhandl</span> ikke.</h2>
+    <p class="final-q" data-reveal>"Disciplin er frihed. Komfort er forfald."</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="wrap">
       <div class="stamp">PROTOKOL UDSTEDT</div>
-      <div>
-        THE SECRET // 28-DAGES HYPERTROFI &amp; FEDTTAB-DIREKTIV<br>
-        <span style="color:var(--ink-3);">LEVERET VIA SIKKER KANAL · KUN TIL PRIVAT BRUG</span>
-      </div>
-      <div style="margin-top:24px;color:var(--ink-3);font-size:10px;">
-        DETTE ER IKKE MEDICINSK RÅDGIVNING. KONSULTÉR EN LÆGE FØR DU STARTER ET NYT KOST- ELLER TRÆNINGSPROGRAM,<br>
-        SÆRLIGT HVIS DU HAR EKSISTERENDE HELBREDSTILSTANDE ELLER TAGER MEDICIN.
-      </div>
-      <div style="margin-top:20px;font-size:10px;letter-spacing:0.15em;color:var(--ink-3);">
-        DESIGNET AF <span style="color:var(--gold);">BUILTBYBORCH</span>
-      </div>
+      <div>THE SECRET // 28-DAGES HYPERTROFI &amp; FEDTTAB-DIREKTIV<br><span style="color:var(--ink-3);">LEVERET VIA SIKKER KANAL · KUN TIL PRIVAT BRUG</span></div>
+      <div class="bdg">DESIGNET &amp; BYGGET AF <b>builtbyborch</b></div>
+      <div class="disc">DETTE ER IKKE MEDICINSK RÅDGIVNING. KONSULTÉR EN LÆGE FØR DU STARTER ET NYT KOST- ELLER TRÆNINGSPROGRAM, SÆRLIGT HVIS DU HAR EKSISTERENDE HELBREDSTILSTANDE ELLER TAGER MEDICIN.</div>
     </div>
   </footer>
 
 </div>
 <!-- end #programme -->
 
-
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
-  const videoGate  = document.getElementById('video-gate');
-  const gate       = document.getElementById('gate');
-  const programme  = document.getElementById('programme');
-  const banner     = document.getElementById('unlock-banner');
-  const form       = document.getElementById('lead-form');
-  const submitBtn  = document.getElementById('submit-btn');
-  const btnText    = document.getElementById('btn-text');
-  const btnArrow   = document.getElementById('btn-arrow');
-  const btnSpinner = document.getElementById('btn-spinner');
-  const submitErr  = document.getElementById('submit-error');
+(function () {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasGSAP = typeof gsap !== 'undefined';
+  const fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  // Already fully unlocked
+  /* ── PRELOADER ── */
+  const pre = document.getElementById('preloader');
+  const preCount = document.getElementById('pre-count');
+  const preFill = document.getElementById('pre-bar-fill');
+  let n = 0;
+  const tick = setInterval(() => {
+    n += Math.floor(Math.random() * 11) + 4;
+    if (n >= 100) { n = 100; clearInterval(tick); finishPre(); }
+    preCount.textContent = n;
+    preFill.style.width = n + '%';
+  }, 90);
+  function finishPre() {
+    setTimeout(() => { pre.classList.add('done'); document.body.style.overflow=''; initReveals(); }, 350);
+  }
+  document.body.style.overflow = 'hidden';
+
+  /* ── SMOOTH SCROLL (Lenis) ── */
+  let lenis = null;
+  if (!reduce && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    if (hasGSAP && gsap.ticker) {
+      lenis.on('scroll', () => { if (window.ScrollTrigger) ScrollTrigger.update(); });
+    }
+  }
+
+  /* ── SCROLL PROGRESS ── */
+  const sp = document.getElementById('scroll-progress');
+  function updateProgress(){
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    sp.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive:true });
+
+  /* ── CUSTOM CURSOR ── */
+  if (fine && !reduce) {
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx=0,my=0,rx=0,ry=0;
+    window.addEventListener('mousemove', e => {
+      mx=e.clientX; my=e.clientY;
+      dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+    });
+    (function loop(){
+      rx += (mx-rx)*0.18; ry += (my-ry)*0.18;
+      ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a,button,input,select,textarea,.day,.cmd,.card,.week,video').forEach(el=>{
+      el.addEventListener('mouseenter',()=>ring.classList.add('is-hover'));
+      el.addEventListener('mouseleave',()=>ring.classList.remove('is-hover'));
+    });
+  } else {
+    document.querySelectorAll('.cursor-dot,.cursor-ring').forEach(c=>c.style.display='none');
+  }
+
+  /* ── MAGNETIC BUTTONS ── */
+  if (fine && !reduce) {
+    document.querySelectorAll('.btn').forEach(btn=>{
+      btn.addEventListener('mousemove', e=>{
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width/2;
+        const y = e.clientY - r.top - r.height/2;
+        btn.style.transform = `translate(${x*0.25}px,${y*0.35}px)`;
+      });
+      btn.addEventListener('mouseleave', ()=>{ btn.style.transform=''; });
+    });
+  }
+
+  /* ── REVEAL + REDACTION ANIMATIONS ── */
+  function initReveals(){
+    if (!hasGSAP || reduce) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // generic reveals
+    gsap.utils.toArray('[data-reveal]').forEach(el=>{
+      gsap.from(el, {
+        y: 34, opacity: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' }
+      });
+    });
+
+    // redaction wipe — bar covers word, then wipes away to "declassify" it
+    gsap.utils.toArray('.redact').forEach(el=>{
+      const bar = document.createElement('span');
+      bar.style.cssText = 'position:absolute;inset:-2px -6px;transform-origin:left center;z-index:2;background:'+(el.classList.contains('ink')?'var(--ink)':'var(--blood)')+';';
+      el.appendChild(bar);
+      const inner = el.querySelector('span');
+      gsap.set(inner, { opacity: 0 });
+      gsap.timeline({ scrollTrigger:{ trigger: el, start:'top 85%' }})
+        .fromTo(bar, { scaleX:0, transformOrigin:'left center' }, { scaleX:1, duration:0.32, ease:'power2.in' })
+        .set(inner, { opacity:1 })
+        .to(bar, { scaleX:0, transformOrigin:'right center', duration:0.42, ease:'power3.inOut' });
+    });
+
+    if (lenis) ScrollTrigger.refresh();
+  }
+
+  /* refresh triggers after fonts load */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(()=>{ if (hasGSAP && !reduce) ScrollTrigger.refresh(); });
+  }
+
+  /* ════════ FUNCTIONAL FLOW (unchanged logic) ════════ */
+  const videoGate = document.getElementById('video-gate');
+  const gate      = document.getElementById('gate');
+  const programme = document.getElementById('programme');
+  const banner    = document.getElementById('unlock-banner');
+  const form      = document.getElementById('lead-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText   = document.getElementById('btn-text');
+  const btnArrow  = document.getElementById('btn-arrow');
+  const btnSpin   = document.getElementById('btn-spinner');
+  const submitErr = document.getElementById('submit-error');
+
   if (localStorage.getItem('secret_unlocked') === '1') {
     videoGate.style.display = 'none';
     unlock(false);
-  }
-  // Video watched but form not yet submitted
-  else if (localStorage.getItem('video_watched') === '1') {
+  } else if (localStorage.getItem('video_watched') === '1') {
     videoGate.style.display = 'none';
     gate.style.display = 'block';
   }
 
-  // ── Video logic ──
-  const video       = document.getElementById('protocol-video');
-  const overlay     = document.getElementById('video-overlay');
-  const progressBar = document.getElementById('video-progress-bar');
-  const videoCta    = document.getElementById('video-cta');
-  const proceedBtn  = document.getElementById('proceed-btn');
+  // video
+  const video = document.getElementById('protocol-video');
+  const overlay = document.getElementById('video-overlay');
+  const vprog = document.getElementById('video-progress');
+  const vcta = document.getElementById('video-cta');
+  const proceedBtn = document.getElementById('proceed-btn');
 
   video.addEventListener('timeupdate', () => {
     if (!video.duration) return;
-    const pct = (video.currentTime / video.duration) * 100;
-    progressBar.style.width = pct + '%';
-    // Hide overlay once user has started playing
+    vprog.style.width = (video.currentTime / video.duration) * 100 + '%';
     if (video.currentTime > 1) overlay.classList.add('hidden');
   });
-
+  video.addEventListener('play', () => overlay.classList.add('hidden'));
   video.addEventListener('ended', () => {
     localStorage.setItem('video_watched', '1');
-    videoCta.classList.add('show');
+    vcta.classList.add('show');
     overlay.classList.add('hidden');
+    if (lenis) lenis.scrollTo(vcta, { offset: -200 });
   });
-
   proceedBtn.addEventListener('click', () => {
     videoGate.style.display = 'none';
     gate.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    (lenis ? lenis.scrollTo(0) : window.scrollTo({ top:0, behavior:'smooth' }));
+    if (hasGSAP && !reduce) setTimeout(()=>ScrollTrigger.refresh(), 60);
   });
 
-  // ── Unlock programme ──
-  function unlock(scrollToTop) {
+  function unlock(scrollTop) {
     gate.style.display = 'none';
     programme.classList.add('unlocked');
     banner.classList.add('show');
-    if (scrollToTop) window.scrollTo({ top: 0, behavior: 'smooth' });
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('#programme .section, #programme .hero, #programme .final').forEach(el => {
-      el.classList.add('reveal');
-      obs.observe(el);
-    });
+    if (scrollTop) (lenis ? lenis.scrollTo(0) : window.scrollTo({ top:0, behavior:'smooth' }));
+    if (hasGSAP && !reduce) setTimeout(()=>{ ScrollTrigger.refresh(); }, 80);
+    setTimeout(()=>banner.classList.remove('show'), 5000);
   }
 
   function validate() {
     let ok = true;
-    const showErr = (id) => { document.getElementById(id).classList.add('show'); ok = false; };
-    const hideErr = (id) => { document.getElementById(id).classList.remove('show'); };
-    document.getElementById('fname').value.trim() ? hideErr('err-fname') : showErr('err-fname');
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim()) ? hideErr('err-email') : showErr('err-email');
-    document.getElementById('phone').value.trim() ? hideErr('err-phone') : showErr('err-phone');
-    document.getElementById('goal').value ? hideErr('err-goal') : showErr('err-goal');
+    const show = id => { document.getElementById(id).classList.add('show'); ok=false; };
+    const hide = id => document.getElementById(id).classList.remove('show');
+    document.getElementById('fname').value.trim() ? hide('err-fname') : show('err-fname');
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim()) ? hide('err-email') : show('err-email');
+    document.getElementById('phone').value.trim() ? hide('err-phone') : show('err-phone');
+    document.getElementById('goal').value ? hide('err-goal') : show('err-goal');
     return ok;
   }
 
@@ -1220,35 +1079,28 @@
     e.preventDefault();
     submitErr.classList.remove('show');
     if (!validate()) return;
-
-    btnText.textContent = 'SENDING...';
+    btnText.textContent = 'SENDER...';
     btnArrow.style.display = 'none';
-    btnSpinner.classList.add('show');
+    btnSpin.classList.add('show');
     submitBtn.disabled = true;
-
-    const data = new FormData(form);
-
     try {
       const res = await fetch('https://formspree.io/f/mlgzyebd', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+        method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }
       });
-
-      if (res.ok) {
-        localStorage.setItem('secret_unlocked', '1');
-        unlock(true);
-      } else {
-        throw new Error('error');
-      }
+      if (res.ok) { localStorage.setItem('secret_unlocked','1'); unlock(true); }
+      else throw new Error('error');
     } catch {
-      btnText.textContent = 'UNLOCK THE PROGRAMME';
+      btnText.textContent = 'LÅS PROGRAMMET OP';
       btnArrow.style.display = 'inline';
-      btnSpinner.classList.remove('show');
+      btnSpin.classList.remove('show');
       submitBtn.disabled = false;
       submitErr.classList.add('show');
     }
   });
+
+  // fallback: if GSAP/preloader stalls, never trap the user
+  setTimeout(()=>{ if(!pre.classList.contains('done')){ pre.classList.add('done'); document.body.style.overflow=''; initReveals(); } }, 3500);
+})();
 </script>
 
 </body>
